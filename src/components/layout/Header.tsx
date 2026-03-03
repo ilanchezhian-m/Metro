@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { ShoppingCart, User, Search } from "lucide-react"
+import { ShoppingCart, User} from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 import logo from "@/assets/metro.png"
