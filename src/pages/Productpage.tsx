@@ -41,11 +41,11 @@ const ProductPage = () => {
       <div>
 
         {/* Main Image */}
-        <div className="border rounded-lg overflow-hidden">
+        <div className="border rounded-lg overflow h-[400px]">
           <img
             src={selectedImage}
             alt={product.name}
-            className="w-full h-[150] object-cover"
+            className="w-full h-full object-cover"
           />
         </div>
 
