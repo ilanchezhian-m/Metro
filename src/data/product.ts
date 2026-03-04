@@ -1,8 +1,26 @@
-import cmfCombo from "@/assets/products/CMF COMBO.jpeg"
+
 import cmfNeckband from "@/assets/products/CMF NECKBAND.jpeg"
 import fossilWatch from "@/assets/products/FOSSIL WATCH.jpeg"
 import iWatch from "@/assets/products/I WATCH.jpeg"
 import samsungWatch from "@/assets/products/SAMSUNG GALAXY.jpeg"
+
+
+// cmf combo images
+import cmfcombo1 from "@/assets/cmf combo/cmf combo.webp"
+import cmfcombo2 from "@/assets/cmf combo/cmf combo 2.webp"
+import cmfcombo3 from "@/assets/cmf combo/cmf combo 3.webp"
+import cmfcombo4 from "@/assets/cmf combo/cmf combo4.webp"
+import cmfcombo5 from "@/assets/cmf combo/cmf combo5.webp"
+import cmfcombo6 from "@/assets/cmf combo/cmf combo6.webp"
+import cmfcombo7 from "@/assets/cmf combo/cmf combo7.webp"
+import cmfcombo8 from "@/assets/cmf combo/cmf combo8.webp"
+
+
+
+
+
+
+
 
 export type Product = {
   id: number
@@ -11,7 +29,7 @@ export type Product = {
   category: string
   price: number
   description: string
-  image?: string
+  image?: string[]
   stock: number
   rating?: number
   featured?: boolean
@@ -28,7 +46,7 @@ export const products: Product[] = [
     category: "audio",
     price: 899,
     description: "Combo pack including CMF earbuds and accessories. Budget friendly audio bundle.",
-    image: cmfCombo,
+    image: [cmfcombo1,cmfcombo2,cmfcombo3,cmfcombo4,cmfcombo5,cmfcombo6,cmfcombo7,cmfcombo8],
     stock: 50,
     rating: 4.3,
     featured: true
@@ -41,7 +59,7 @@ export const products: Product[] = [
     category: "audio",
     price: 599,
     description: "Wireless CMF neckband with strong bass and long battery backup.",
-    image: cmfNeckband,
+    image: [cmfNeckband,],
     stock: 40,
     rating: 4.2,
     featured: true
@@ -54,7 +72,7 @@ export const products: Product[] = [
     category: "watch",
     price: 999,
     description: "Classic Fossil analog watch with premium design and durable strap.",
-    image: fossilWatch,
+    image: [fossilWatch,],
     stock: 20,
     rating: 4.4,
     featured: true
@@ -67,7 +85,7 @@ export const products: Product[] = [
     category: "smartwatch",
     price: 1050,
     description: "Smartwatch inspired design with fitness tracking and notification features.",
-    image: iWatch,
+    image: [iWatch,],
     stock: 25,
     rating: 4.5,
     featured: true
@@ -80,7 +98,7 @@ export const products: Product[] = [
     category: "smartwatch",
     price: 999,
     description: "Samsung Active 2 style smartwatch with fitness tracking and AMOLED display.",
-    image: samsungWatch,
+    image: [samsungWatch,],
     stock: 30,
     rating: 4.4,
     featured: true

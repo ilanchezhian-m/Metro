@@ -32,7 +32,7 @@ const Home = () => {
               <Link to={`/product/${product.id}`}>
                 <div className="h-40 sm:h-48 overflow-hidden">
                   <img
-                    src={product.image}
+                    src={product.image?.[0]}
                     alt={product.name}
                     className="w-full h-full object-cover"
                   />
@@ -54,7 +54,13 @@ const Home = () => {
                 {quantity === 0 ? (
                   <Button
                     className="w-full"
-                    onClick={() => addToCart(product)}
+                    onClick={() =>
+                    addToCart({
+                      name: product.name,
+                      price: product.price,
+                      image: product.image?.[0] || "",
+                    })
+                  }
                   >
                     Add to cart
                   </Button>
