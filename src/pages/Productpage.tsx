@@ -1,3 +1,4 @@
+
 import { useParams, Link } from "react-router-dom"
 import { products } from "../data/product"
 import { useCart } from "@/context/CartContext"
@@ -7,13 +8,31 @@ import { useState } from "react"
 const ProductPage = () => {
   const { id } = useParams()
   const { addToCart, cart } = useCart()
-  
 
   const product = products.find((p) => p.id === Number(id))
-    const images = product?.image || []
+  const images = product?.image || []
 
-  const [selectedImage, setSelectedImage] = useState(images[0])
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [touchStart, setTouchStart] = useState(0)
 
+  const nextImage = () => {
+    setCurrentIndex((prev) =>
+      prev === images.length - 1 ? 0 : prev + 1
+    )
+  }
+
+  const prevImage = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? images.length - 1 : prev - 1
+    )
+  }
+
+  const handleSwipe = (touchEnd: number) => {
+    const diff = touchStart - touchEnd
+
+    if (diff > 50) nextImage()
+    if (diff < -50) prevImage()
+  }
 
   const getProductQty = (name: string) => {
     const item = cart.find((p) => p.name === name)
@@ -30,9 +49,8 @@ const ProductPage = () => {
       </div>
     )
   }
+
   const quantity = getProductQty(product.name)
-
-
 
   return (
     <div className="max-w-6xl mx-auto px-4 md:px-6 py-10 grid md:grid-cols-2 gap-10">
@@ -40,13 +58,46 @@ const ProductPage = () => {
       {/* Product Image Section */}
       <div>
 
-        {/* Main Image */}
-        <div className="border rounded-lg overflow h-[400px]">
-          <img
-            src={selectedImage}
-            alt={product.name}
-            className="w-full h-full object-cover"
-          />
+        <div
+          className="relative border rounded-lg overflow-hidden h-[300px] sm:h-[400px]"
+          onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
+          onTouchEnd={(e) => handleSwipe(e.changedTouches[0].clientX)}
+        >
+
+          {/* Image Slider */}
+          <div
+            className="flex transition-transform duration-500 ease-in-out h-full"
+            style={{
+              transform: `translateX(-${currentIndex * 100}%)`,
+            }}
+          >
+            {images.map((img, i) => (
+              <div key={i} className="min-w-full h-full">
+                <img
+                  src={img}
+                  alt={product.name}
+                  className="w-full h-full object-cover "
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Left Arrow */}
+          <button
+            onClick={prevImage}
+            className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black"
+          >
+            ‹
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={nextImage}
+            className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black"
+          >
+            ›
+          </button>
+
         </div>
 
         {/* Thumbnail Images */}
@@ -55,9 +106,9 @@ const ProductPage = () => {
             <img
               key={i}
               src={img}
-              onClick={() => setSelectedImage(img)}
+              onClick={() => setCurrentIndex(i)}
               className={`w-16 h-16 object-cover border rounded cursor-pointer transition
-              ${selectedImage === img ? "border-black" : "border-gray-300"}`}
+              ${currentIndex === i ? "border-black" : "border-gray-300"}`}
             />
           ))}
         </div>
@@ -91,12 +142,12 @@ const ProductPage = () => {
           <Button
             className="w-full"
             onClick={() =>
-            addToCart({
-              name: product.name,
-              price: product.price,
-              image: product.image?.[0] || "",
-            })
-          }
+              addToCart({
+                name: product.name,
+                price: product.price,
+                image: product.image?.[0] || "",
+              })
+            }
           >
             Add to Cart
           </Button>
