@@ -3,6 +3,8 @@ import MainLayout from "./components/layout/MainLayout"
 import Home from "./pages/Home"
 import About from "./pages/About"
 import Cart from "./pages/Cart"
+import ProductPage from "./pages/Productpage"
+import NotFound from "./pages/NotFound"
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

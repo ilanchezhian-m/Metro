@@ -2,6 +2,7 @@ import { products } from "../data/product"
 import { useCart } from "@/context/CartContext"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Link } from "react-router-dom"
 
 const Home = () => {
   const { addToCart, cart } = useCart()
@@ -26,25 +27,30 @@ const Home = () => {
               key={product.id}
               className="overflow-hidden hover:shadow-lg transition duration-300"
             >
-              {/* Product Image */}
-              <div className="h-40 sm:h-48 overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
 
-              <CardContent className="p-4 space-y-3">
-                <h2 className="font-semibold text-sm sm:text-lg">
-                  {product.name}
-                </h2>
+              {/* Clickable Product Section */}
+              <Link to={`/product/${product.id}`}>
+                <div className="h-40 sm:h-48 overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-                <p className="text-lg font-bold text-primary">
-                  ₹{product.price}
-                </p>
+                <CardContent className="p-4 space-y-3">
+                  <h2 className="font-semibold text-sm sm:text-lg">
+                    {product.name}
+                  </h2>
 
-                {/* Add to Cart / Quantity Display */}
+                  <p className="text-lg font-bold text-primary">
+                    ₹{product.price}
+                  </p>
+                </CardContent>
+              </Link>
+
+              {/* Add to Cart */}
+              <div className="px-4 pb-4">
                 {quantity === 0 ? (
                   <Button
                     className="w-full"
@@ -59,7 +65,8 @@ const Home = () => {
                     </span>
                   </div>
                 )}
-              </CardContent>
+              </div>
+
             </Card>
           )
         })}
