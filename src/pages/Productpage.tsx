@@ -234,7 +234,7 @@ const ProductPage = () => {
                     name: product.name,
                     price: product.price,
                     image: product.image?.[0] || "",
-                    quantity: qty,
+                    
                   })
                 }
                 disabled={product.stock === 0}
@@ -332,7 +332,7 @@ const ProductPage = () => {
               name: product.name,
               price: product.price,
               image: product.image?.[0] || "",
-              quantity: qty,
+             
             })
           }
           disabled={product.stock === 0}
