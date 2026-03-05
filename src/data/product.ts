@@ -1,19 +1,5 @@
 
-import cmfNeckband from "@/assets/products/CMF NECKBAND.jpeg"
-import fossilWatch from "@/assets/products/FOSSIL WATCH.jpeg"
-import iWatch from "@/assets/products/I WATCH.jpeg"
-import samsungWatch from "@/assets/products/SAMSUNG GALAXY.jpeg"
 
-
-// cmf combo images
-import cmfcombo1 from "@/assets/cmf combo/cmf combo.webp"
-import cmfcombo2 from "@/assets/cmf combo/cmf combo 2.webp"
-import cmfcombo3 from "@/assets/cmf combo/cmf combo 3.webp"
-import cmfcombo4 from "@/assets/cmf combo/cmf combo4.webp"
-import cmfcombo5 from "@/assets/cmf combo/cmf combo5.webp"
-import cmfcombo6 from "@/assets/cmf combo/cmf combo6.webp"
-import cmfcombo7 from "@/assets/cmf combo/cmf combo7.webp"
-import cmfcombo8 from "@/assets/cmf combo/cmf combo8.webp"
 
 //cmf buds images
 import cmfbuds1 from "@/assets/cmf buds 2/cmf buds 2 image1.webp"
@@ -51,6 +37,14 @@ import img_id14 from "@/assets/generated/samsung_oneplus_combo_1772705268220.png
 import img_id16 from "@/assets/generated/samsung_buds2_pro_1772705292565.png"
 import img_id17 from "@/assets/generated/oneplus_buds3_pro_1772705309268.png"
 
+import img_id1_new from "@/assets/generated/gen_cmf_combo_1772726049431.png"
+import img_id2_new from "@/assets/generated/gen_cmf_neckband_1772726067592.png"
+import img_id3_new from "@/assets/generated/gen_fossil_watch_1772726086773.png"
+import img_id4_new from "@/assets/generated/gen_iwatch_1772726103415.png"
+import img_id5_new from "@/assets/generated/gen_samsung_watch_1772726121883.png"
+import img_id18_new from "@/assets/generated/gen_oneplus_combo_1772726137766.png"
+import img_id19_new from "@/assets/generated/gen_magsafe_powerbank_1772726156321.png"
+
 export type Product = {
   id: number
   name: string
@@ -75,7 +69,7 @@ export const products: Product[] = [
     category: "audio",
     price: 899,
     description: "Combo pack including CMF earbuds and accessories. Budget friendly audio bundle.",
-    image: [cmfcombo1, cmfcombo2, cmfcombo3, cmfcombo4, cmfcombo5, cmfcombo6, cmfcombo7, cmfcombo8],
+    image: [img_id1_new],
     stock: 50,
     rating: 4.3,
     featured: true
@@ -88,7 +82,7 @@ export const products: Product[] = [
     category: "audio",
     price: 599,
     description: "Wireless CMF neckband with strong bass and long battery backup.",
-    image: [cmfNeckband,],
+    image: [img_id2_new],
     stock: 40,
     rating: 4.2,
     featured: true
@@ -101,7 +95,7 @@ export const products: Product[] = [
     category: "watch",
     price: 999,
     description: "Classic Fossil analog watch with premium design and durable strap.",
-    image: [fossilWatch,],
+    image: [img_id3_new],
     stock: 20,
     rating: 4.4,
     featured: true
@@ -114,7 +108,7 @@ export const products: Product[] = [
     category: "smartwatch",
     price: 1050,
     description: "Smartwatch inspired design with fitness tracking and notification features.",
-    image: [iWatch,],
+    image: [img_id4_new],
     stock: 25,
     rating: 4.5,
     featured: true
@@ -127,7 +121,7 @@ export const products: Product[] = [
     category: "smartwatch",
     price: 999,
     description: "Samsung Active 2 style smartwatch with fitness tracking and AMOLED display.",
-    image: [samsungWatch,],
+    image: [img_id5_new],
     stock: 30,
     rating: 4.4,
     featured: true
@@ -280,6 +274,7 @@ export const products: Product[] = [
     category: "combo",
     price: 599,
     description: "OnePlus earbuds and neckband combo pack.",
+    image: [img_id18_new],
     stock: 25
   },
 
@@ -292,6 +287,7 @@ export const products: Product[] = [
     category: "accessory",
     price: 699,
     description: "MagSafe compatible wireless powerbank for smartphones.",
+    image: [img_id19_new],
     stock: 30
   }
 

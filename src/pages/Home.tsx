@@ -2,9 +2,9 @@ import { useState, useEffect } from "react"
 import { products } from "../data/product"
 import { useCart } from "@/context/CartContext"
 import { Button } from "@/components/ui/button"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
-import { ShoppingCart, Headphones, Watch, Smartphone, Zap, Package } from "lucide-react"
+import { ShoppingCart, Headphones, Watch, Smartphone, Zap, Package, Check } from "lucide-react"
 
 import heroAudioImage from "@/assets/hero-audio.png"
 
@@ -19,13 +19,33 @@ const categoryLabel: Record<string, string> = {
 
 const Home = () => {
   const { addToCart } = useCart()
+  const location = useLocation()
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+  const [addedProductId, setAddedProductId] = useState<number | null>(null)
+
+  const handleAddToCart = (e: React.MouseEvent, product: any) => {
+    e.preventDefault()
+    addToCart({ name: product.name, price: product.price, image: product.image?.[0] || "" })
+    setAddedProductId(product.id)
+    setTimeout(() => setAddedProductId(null), 2000)
+  }
 
   const categories = ["All", ...new Set(products.map((p) => p.category))]
   const [selectedCategory, setSelectedCategory] = useState("All")
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search)
+    const categoryQuery = searchParams.get("category")
+
+    if (categoryQuery && categories.includes(categoryQuery)) {
+      setSelectedCategory(categoryQuery)
+      setTimeout(() => {
+        document.getElementById('products-section')?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    } else if (!location.search) {
+      window.scrollTo(0, 0)
+    }
+  }, [location.search])
 
   const filteredProducts = products.filter((p) => {
     return selectedCategory === "All" || p.category === selectedCategory
@@ -216,14 +236,21 @@ const Home = () => {
                   {/* Quick Add Button - Desktop Only */}
                   <div className="hidden sm:block absolute bottom-3 left-3 right-3 z-20 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                     <Button
-                      className="w-full bg-[#ff4500] hover:bg-[#ff5500] text-white rounded-full h-11 font-semibold tracking-wide shadow-[0_8px_20px_rgb(255,69,0,0.3)] hover:shadow-[0_8px_20px_rgb(255,69,0,0.5)] border-0 text-sm transition-all transform hover:-translate-y-0.5"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        addToCart({ name: product.name, price: product.price, image: product.image?.[0] || "" })
-                      }}
+                      className={`w-full text-white rounded-full h-11 font-semibold tracking-wide border-0 text-sm transition-all transform hover:-translate-y-0.5 ${addedProductId === product.id
+                          ? "bg-green-500 hover:bg-green-600 shadow-[0_8px_20px_rgb(34,197,94,0.3)] scale-105"
+                          : "bg-[#ff4500] hover:bg-[#ff5500] shadow-[0_8px_20px_rgb(255,69,0,0.3)] hover:shadow-[0_8px_20px_rgb(255,69,0,0.5)]"
+                        }`}
+                      onClick={(e) => handleAddToCart(e, product)}
                     >
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      Add to Cart
+                      {addedProductId === product.id ? (
+                        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="flex items-center">
+                          <Check className="w-4 h-4 mr-2" /> Added!
+                        </motion.div>
+                      ) : (
+                        <div className="flex items-center">
+                          <ShoppingCart className="w-4 h-4 mr-2" /> Add to Cart
+                        </div>
+                      )}
                     </Button>
                   </div>
                 </div>
@@ -246,14 +273,21 @@ const Home = () => {
                   {/* Mobile Add to Cart - Persistent */}
                   <div className="sm:hidden mt-3">
                     <Button
-                      className="w-full bg-[#ff4500] hover:bg-[#ff5500] text-white rounded-xl h-10 font-bold text-[10px] tracking-wider uppercase shadow-sm active:scale-95 transition-all"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        addToCart({ name: product.name, price: product.price, image: product.image?.[0] || "" })
-                      }}
+                      className={`w-full text-white rounded-xl h-10 font-bold text-[10px] tracking-wider uppercase shadow-sm active:scale-95 transition-all ${addedProductId === product.id
+                          ? "bg-green-500 hover:bg-green-600 scale-105"
+                          : "bg-[#ff4500] hover:bg-[#ff5500]"
+                        }`}
+                      onClick={(e) => handleAddToCart(e, product)}
                     >
-                      <ShoppingCart className="w-3.5 h-3.5 mr-2" />
-                      Add to Cart
+                      {addedProductId === product.id ? (
+                        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="flex items-center">
+                          <Check className="w-3.5 h-3.5 mr-2" /> Added!
+                        </motion.div>
+                      ) : (
+                        <div className="flex items-center">
+                          <ShoppingCart className="w-3.5 h-3.5 mr-2" /> Add to Cart
+                        </div>
+                      )}
                     </Button>
                   </div>
                 </div>

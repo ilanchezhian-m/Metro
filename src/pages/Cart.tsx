@@ -1,19 +1,12 @@
 import { useCart } from "@/context/CartContext"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { Link } from "react-router-dom"
+import { Button } from "@/components/ui/button"
 import { ChevronRight, ShieldCheck, Truck, ArrowRight, Minus, Plus, Trash2, ShoppingCart } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 const Cart = () => {
   const { cart, increaseQty, decreaseQty, removeFromCart } = useCart()
-
-  const [name, setName] = useState("")
-  const [phone, setPhone] = useState("")
-  const [address, setAddress] = useState("")
-  const [pincode, setPincode] = useState("")
-  const [landmark, setLandmark] = useState("")
 
   // Scroll to top on mount
   useEffect(() => {
@@ -29,33 +22,6 @@ const Cart = () => {
     (sum, item) => sum + item.price * item.quantity,
     0
   )
-
-  const handleCheckout = () => {
-    if (!name || !phone) {
-      alert("Please fill your name and phone number")
-      return
-    }
-
-    if (!/^\d{10}$/.test(phone)) {
-      alert("Please enter a valid 10-digit phone number")
-      return
-    }
-
-    const productList = cart
-      .map(
-        (item) =>
-          `${item.name} (x${item.quantity}) - ₹${item.price * item.quantity
-          }`
-      )
-      .join("%0A")
-
-    const message = `Order Details:%0A${productList}%0A%0ATotal items: ${totalItems}%0ATotal price: ₹${totalPrice}%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0APincode: ${pincode}%0ALandmark: ${landmark}`
-
-    window.open(
-      `https://wa.me/916381041017?text=${message}`,
-      "_blank"
-    )
-  }
 
   return (
     <div className="min-h-screen bg-[#f5f5f7] selection:bg-orange-500 selection:text-white pt-8 pb-24">
@@ -200,56 +166,12 @@ const Cart = () => {
                   </div>
                 </div>
 
-                <div className="bg-[#f5f5f7] rounded-2xl p-6 space-y-4">
-                  <h3 className="font-bold text-sm uppercase tracking-wider text-gray-500 mb-2">Delivery Details</h3>
-
-                  <div className="space-y-3">
-                    <Input
-                      placeholder="Full Name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="bg-white border-0 shadow-sm rounded-xl px-4 py-6 text-base focus-visible:ring-1 focus-visible:ring-black"
-                    />
-                    <Input
-                      placeholder="Phone Number (10 digits)"
-                      type="tel"
-                      value={phone}
-                      onChange={(e) => {
-                        const val = e.target.value.replace(/\D/g, "");
-                        if (val.length <= 10) setPhone(val);
-                      }}
-                      className="bg-white border-0 shadow-sm rounded-xl px-4 py-6 text-base focus-visible:ring-1 focus-visible:ring-black"
-                    />
-                    <Input
-                      placeholder="Complete Address"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                      className="bg-white border-0 shadow-sm rounded-xl px-4 py-6 text-base focus-visible:ring-1 focus-visible:ring-black"
-                    />
-                    <div className="grid grid-cols-2 gap-3">
-                      <Input
-                        placeholder="Pincode"
-                        value={pincode}
-                        onChange={(e) => setPincode(e.target.value)}
-                        className="bg-white border-0 shadow-sm rounded-xl px-4 py-6 text-base focus-visible:ring-1 focus-visible:ring-black"
-                      />
-                      <Input
-                        placeholder="Landmark"
-                        value={landmark}
-                        onChange={(e) => setLandmark(e.target.value)}
-                        className="bg-white border-0 shadow-sm rounded-xl px-4 py-6 text-base focus-visible:ring-1 focus-visible:ring-black"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <Button
-                  className="w-full bg-[#ff4500] hover:bg-[#ff5500] text-white font-medium tracking-wide h-16 rounded-full text-lg shadow-[0_8px_30px_rgb(255,69,0,0.3)] hover:shadow-[0_8px_30px_rgb(255,69,0,0.5)] transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 group"
-                  onClick={handleCheckout}
-                >
-                  Checkout via WhatsApp
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <Link to="/checkout" className="block w-full">
+                  <Button className="w-full bg-[#ff4500] hover:bg-[#ff5500] text-white font-medium tracking-wide h-16 rounded-full text-lg shadow-[0_8px_30px_rgb(255,69,0,0.3)] hover:shadow-[0_8px_30px_rgb(255,69,0,0.5)] transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 group">
+                    Proceed to Checkout
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
 
                 {/* Trust Badges */}
                 <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">

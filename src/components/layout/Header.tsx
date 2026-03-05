@@ -17,13 +17,13 @@ const Header = () => {
     0
   )
 
-  // Quick categories for the mobile menu
+  // Quick categories for the menu
   const menuCategories = [
-    { name: "All Products", path: "/" },
-    { name: "Smart Audio", path: "/" },
-    { name: "Smart Watches", path: "/" },
-    { name: "Combos & Bundles", path: "/" },
-    { name: "Accessories", path: "/" },
+    { name: "All Products", path: "/", category: "All" },
+    { name: "Smart Audio", path: "/", category: "audio" },
+    { name: "Smartwatches", path: "/", category: "smartwatch" },
+    { name: "Combos & Bundles", path: "/", category: "combo" },
+    { name: "Accessories", path: "/", category: "accessory" },
   ]
 
   return (
@@ -61,7 +61,7 @@ const Header = () => {
               {menuCategories.map((cat, idx) => (
                 <Link
                   key={idx}
-                  to={cat.path}
+                  to={`${cat.path}?category=${cat.category}`}
                   className="text-sm font-bold tracking-wider text-gray-500 hover:text-black uppercase transition-colors"
                 >
                   {cat.name}
@@ -168,7 +168,7 @@ const Header = () => {
                   {menuCategories.map((cat, idx) => (
                     <Link
                       key={idx}
-                      to={cat.path}
+                      to={`${cat.path}?category=${cat.category}`}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="flex items-center justify-between px-4 py-4 rounded-2xl hover:bg-[#f5f5f7] text-gray-900 group transition-colors"
                     >

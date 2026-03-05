@@ -3,7 +3,7 @@ import { products } from "../data/product"
 import { useCart } from "@/context/CartContext"
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
-import { ChevronLeft, ChevronRight, ShoppingCart, Heart, Truck, Shield, RotateCcw, Share2 } from "lucide-react"
+import { ChevronLeft, ChevronRight, ShoppingCart, Heart, Truck, Shield, RotateCcw, Share2, Check } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 const ProductPage = () => {
@@ -16,6 +16,18 @@ const ProductPage = () => {
 
   const [qty, setQty] = useState(1)
   const [activeImage, setActiveImage] = useState(0)
+  const [isAdded, setIsAdded] = useState(false)
+
+  const handleAddToCart = () => {
+    if (!product) return;
+    addToCart({
+      name: product.name,
+      price: product.price,
+      image: images[0] || "",
+    });
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 2000);
+  }
 
   // Scroll to top on mount
   useEffect(() => {
@@ -220,18 +232,23 @@ const ProductPage = () => {
                 className="pt-2"
               >
                 <Button
-                  className="w-full bg-[#ff4500] hover:bg-[#ff5500] text-white font-medium tracking-wide h-16 rounded-full text-lg shadow-[0_8px_30px_rgb(255,69,0,0.3)] hover:shadow-[0_8px_30px_rgb(255,69,0,0.5)] transition-all transform hover:-translate-y-1"
-                  onClick={() =>
-                    addToCart({
-                      name: product.name,
-                      price: product.price,
-                      image: images[0] || "",
-                    })
-                  }
+                  className={`w-full text-white font-medium tracking-wide h-16 rounded-full text-lg transition-all transform hover:-translate-y-1 ${isAdded
+                      ? "bg-green-500 hover:bg-green-600 shadow-[0_8px_30px_rgb(34,197,94,0.3)] scale-105"
+                      : "bg-[#ff4500] hover:bg-[#ff5500] shadow-[0_8px_30px_rgb(255,69,0,0.3)] hover:shadow-[0_8px_30px_rgb(255,69,0,0.5)]"
+                    }`}
+                  onClick={handleAddToCart}
                   disabled={product.stock === 0}
                 >
-                  <ShoppingCart className="w-5 h-5 mr-3" />
-                  {product.stock === 0 ? "Out of Stock" : `Add to Cart — ₹${(product.price * qty).toLocaleString()}`}
+                  {isAdded ? (
+                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="flex items-center">
+                      <Check className="w-5 h-5 mr-3" /> Added to Cart!
+                    </motion.div>
+                  ) : (
+                    <div className="flex items-center">
+                      <ShoppingCart className="w-5 h-5 mr-3" />
+                      {product.stock === 0 ? "Out of Stock" : `Add to Cart — ₹${(product.price * qty).toLocaleString()}`}
+                    </div>
+                  )}
                 </Button>
 
                 <p className="text-center text-xs text-gray-400 mt-4 tracking-wide uppercase">
@@ -359,17 +376,18 @@ const ProductPage = () => {
         </div>
 
         <Button
-          className="flex-1 bg-[#ff4500] hover:bg-[#ff5500] text-white font-medium tracking-wide h-12 rounded-full text-base shadow-lg"
-          onClick={() =>
-            addToCart({
-              name: product.name,
-              price: product.price,
-              image: images[0] || "",
-            })
-          }
+          className={`flex-1 text-white font-medium tracking-wide h-12 rounded-full text-base shadow-lg transition-all ${isAdded ? "bg-green-500 hover:bg-green-600 scale-105" : "bg-[#ff4500] hover:bg-[#ff5500]"
+            }`}
+          onClick={handleAddToCart}
           disabled={product.stock === 0}
         >
-          {product.stock === 0 ? "Out of Stock" : `Add • ₹${(product.price * qty).toLocaleString()}`}
+          {isAdded ? (
+            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="flex items-center justify-center">
+              <Check className="w-4 h-4 mr-2" /> Added!
+            </motion.div>
+          ) : (
+            <span>{product.stock === 0 ? "Out of Stock" : `Add • ₹${(product.price * qty).toLocaleString()}`}</span>
+          )}
         </Button>
       </motion.div>
     </div>
