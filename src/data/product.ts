@@ -15,12 +15,41 @@ import cmfcombo6 from "@/assets/cmf combo/cmf combo6.webp"
 import cmfcombo7 from "@/assets/cmf combo/cmf combo7.webp"
 import cmfcombo8 from "@/assets/cmf combo/cmf combo8.webp"
 
+//cmf buds images
+import cmfbuds1 from "@/assets/cmf buds 2/cmf buds 2 image1.webp"
+import cmfbuds2 from "@/assets/cmf buds 2/cmf buds 2 image2.webp"
+import cmfbuds3 from "@/assets/cmf buds 2/cmf buds 2 image3.webp"
+import cmfbuds4 from "@/assets/cmf buds 2/cmf buds 2 image4.webp"
+import cmfbuds5 from "@/assets/cmf buds 2/cmf buds 2 image5.webp"
+import cmfbuds6 from "@/assets/cmf buds 2/cmf buds 2 image6.webp"
+import cmfbuds7 from "@/assets/cmf buds 2/cmf buds 2 image7.webp"
+import cmfbuds8 from "@/assets/cmf buds 2/cmf buds 2 image8.webp"
+
+// Samsung Buds 3 Pro images
+import buds3pro1 from "@/assets/samsung buds 3 pro/buds3pro_1_1772704876531.png"
+import buds3pro2 from "@/assets/samsung buds 3 pro/buds3pro_2_1772704919026.png"
+import buds3pro3 from "@/assets/samsung buds 3 pro/buds3pro_3_1772704933789.png"
+import buds3pro4 from "@/assets/samsung buds 3 pro/buds3pro_4_1772704976549.png"
+import buds3pro5 from "@/assets/samsung buds 3 pro/buds3pro_5_1772704992368.png"
 
 
 
 
 
 
+
+
+// Generated missing images
+import img_id6 from "@/assets/generated/airpods_magsafe_combo_1772705132517.png"
+import img_id7 from "@/assets/generated/airpods_pro_gen2_1772705148195.png"
+import img_id8 from "@/assets/generated/airpods_pro_gen2_alt_1772705178160.png"
+import img_id9 from "@/assets/generated/cmf_buds_neckband_1772705195429.png"
+import img_id10 from "@/assets/generated/cmf_buds_pro_button_1772705220670.png"
+import img_id11 from "@/assets/generated/cmf_neckband_roller_1772705237229.png"
+import img_id12 from "@/assets/generated/cmf_buds_1772705253893.png"
+import img_id14 from "@/assets/generated/samsung_oneplus_combo_1772705268220.png"
+import img_id16 from "@/assets/generated/samsung_buds2_pro_1772705292565.png"
+import img_id17 from "@/assets/generated/oneplus_buds3_pro_1772705309268.png"
 
 export type Product = {
   id: number
@@ -46,7 +75,7 @@ export const products: Product[] = [
     category: "audio",
     price: 899,
     description: "Combo pack including CMF earbuds and accessories. Budget friendly audio bundle.",
-    image: [cmfcombo1,cmfcombo2,cmfcombo3,cmfcombo4,cmfcombo5,cmfcombo6,cmfcombo7,cmfcombo8],
+    image: [cmfcombo1, cmfcombo2, cmfcombo3, cmfcombo4, cmfcombo5, cmfcombo6, cmfcombo7, cmfcombo8],
     stock: 50,
     rating: 4.3,
     featured: true
@@ -112,6 +141,7 @@ export const products: Product[] = [
     brand: "Apple",
     category: "audio",
     price: 999,
+    image: [img_id6],
     description: "Apple style AirPods bundled with MagSafe wireless charger combo.",
     stock: 35
   },
@@ -122,6 +152,7 @@ export const products: Product[] = [
     brand: "Apple",
     category: "audio",
     price: 650,
+    image: [img_id7],
     description: "Noise cancelling AirPods Pro Gen 2 with improved sound clarity.",
     stock: 50
   },
@@ -132,6 +163,7 @@ export const products: Product[] = [
     brand: "Apple",
     category: "audio",
     price: 850,
+    image: [img_id8],
     description: "Premium AirPods Pro Gen 2 wireless earbuds with ANC support.",
     stock: 30
   },
@@ -144,6 +176,7 @@ export const products: Product[] = [
     brand: "CMF",
     category: "audio",
     price: 899,
+    image: [img_id9],
     description: "Combo pack including CMF buds and neckband.",
     stock: 40
   },
@@ -154,6 +187,7 @@ export const products: Product[] = [
     brand: "CMF",
     category: "audio",
     price: 600,
+    image: [img_id10],
     description: "CMF Buds Pro with touch button controls and strong bass.",
     stock: 60
   },
@@ -164,6 +198,7 @@ export const products: Product[] = [
     brand: "CMF",
     category: "audio",
     price: 600,
+    image: [img_id11],
     description: "CMF neckband bundle with Spis roller accessory.",
     stock: 30
   },
@@ -174,6 +209,7 @@ export const products: Product[] = [
     brand: "CMF",
     category: "audio",
     price: 600,
+    image: [img_id12],
     description: "Compact CMF wireless earbuds with balanced sound.",
     stock: 50
   },
@@ -184,6 +220,7 @@ export const products: Product[] = [
     brand: "CMF",
     category: "audio",
     price: 600,
+    image: [cmfbuds1, cmfbuds2, cmfbuds3, cmfbuds4, cmfbuds5, cmfbuds6, cmfbuds7, cmfbuds8],
     description: "Updated CMF Buds 2 with improved battery life.",
     stock: 45
   },
@@ -196,6 +233,7 @@ export const products: Product[] = [
     brand: "Samsung",
     category: "combo",
     price: 1499,
+    image: [img_id14],
     description: "Combo pack including Samsung Ultra T watch and OnePlus Buds 3 Pro.",
     stock: 20
   },
@@ -206,6 +244,7 @@ export const products: Product[] = [
     brand: "Samsung",
     category: "audio",
     price: 850,
+    image: [buds3pro1, buds3pro2, buds3pro3, buds3pro4, buds3pro5],
     description: "Samsung Buds 3 Pro with premium sound and comfortable fit.",
     stock: 40
   },
@@ -216,6 +255,7 @@ export const products: Product[] = [
     brand: "Samsung",
     category: "audio",
     price: 799,
+    image: [img_id16],
     description: "Samsung Buds 2 Pro wireless earbuds with ANC.",
     stock: 35
   },
@@ -228,6 +268,7 @@ export const products: Product[] = [
     brand: "OnePlus",
     category: "audio",
     price: 599,
+    image: [img_id17],
     description: "OnePlus Buds 3 Pro with clear audio and fast pairing.",
     stock: 45
   },

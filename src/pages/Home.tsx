@@ -1,213 +1,252 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { products } from "../data/product"
 import { useCart } from "@/context/CartContext"
-import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
-import { Headphones, Watch, Smartphone, Package, Zap, ShoppingCart } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { ShoppingCart, Headphones, Watch, Smartphone, Zap, Package } from "lucide-react"
+
+import heroAudioImage from "@/assets/hero-audio.png"
+
+const categoryLabel: Record<string, string> = {
+  All: "All Products",
+  audio: "Smart Audio",
+  watch: "Watches",
+  smartwatch: "Smartwatches",
+  combo: "Combos & Bundles",
+  accessory: "Accessories",
+}
 
 const Home = () => {
   const { addToCart } = useCart()
 
-  const brands = ["All", ...new Set(products.map((p) => p.brand))]
-  const categories = ["All", ...new Set(products.map((p) => p.category))]
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
-  const [selectedBrand, setSelectedBrand] = useState("All")
+  const categories = ["All", ...new Set(products.map((p) => p.category))]
   const [selectedCategory, setSelectedCategory] = useState("All")
 
   const filteredProducts = products.filter((p) => {
-    const brandMatch = selectedBrand === "All" || p.brand === selectedBrand
-    const categoryMatch = selectedCategory === "All" || p.category === selectedCategory
-    return brandMatch && categoryMatch
+    return selectedCategory === "All" || p.category === selectedCategory
   })
-
-  const featuredProducts = products.filter(p => p.featured)
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case "audio": return <Headphones className="w-6 h-6" />
-      case "watch": return <Watch className="w-6 h-6" />
-      case "smartwatch": return <Smartphone className="w-6 h-6" />
-      case "combo": return <Package className="w-6 h-6" />
-      case "accessory": return <Zap className="w-6 h-6" />
-      default: return <Package className="w-6 h-6" />
+      case "audio": return <Headphones className="w-5 h-5" />
+      case "watch": return <Watch className="w-5 h-5" />
+      case "smartwatch": return <Smartphone className="w-5 h-5" />
+      case "accessory": return <Zap className="w-5 h-5" />
+      case "combo": return <Package className="w-5 h-5" />
+      default: return <Package className="w-5 h-5" />
     }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-white text-gray-900 selection:bg-[#ff4500] selection:text-white pb-20">
+
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 text-white py-20 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-            Metro Gadgets
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-blue-100">
-            Discover the latest in audio, watches, and tech accessories
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 text-lg font-semibold">
-              Shop Now
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 text-lg font-semibold">
-              View Featured
-            </Button>
-          </div>
-        </div>
-        <div className="absolute inset-0 bg-black/10"></div>
-      </section>
-
-      {/* Featured Products */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
-            Featured Products
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {featuredProducts.slice(0, 4).map((product) => (
-              <Card key={product.id} className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-white">
-                <Link to={`/product/${product.id}`}>
-                  <div className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-6 overflow-hidden relative">
-                    <img
-                      src={product.image?.[0]}
-                      alt={product.name}
-                      className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                </Link>
-                <CardContent className="p-6 space-y-3">
-                  <h3 className="text-lg font-semibold line-clamp-2 text-gray-800 group-hover:text-blue-600 transition-colors">
-                    {product.name}
-                  </h3>
-                  <p className="text-2xl font-bold text-green-600">
-                    ₹{product.price}
-                  </p>
+      <section className="px-4 sm:px-6 lg:px-8 py-8 lg:py-12 max-w-[1400px] mx-auto">
+        <div className="bg-[#f5f5f7] rounded-3xl overflow-hidden relative min-h-[500px] lg:min-h-[600px] flex items-center">
+          <div className="grid lg:grid-cols-2 gap-8 w-full p-8 md:p-12 lg:p-20 z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col justify-center space-y-6 max-w-xl"
+            >
+              <span className="text-sm font-bold tracking-widest text-[#ff4500] uppercase">
+                New Arrival
+              </span>
+              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-black leading-[1.1]">
+                Smart Audio <br /> Experience
+              </h1>
+              <p className="text-lg text-gray-500 max-w-md leading-relaxed">
+                Discover trending gadgets, high-tech drones, audio devices, and smart accessories at unbeatable deals.
+              </p>
+              <div className="pt-4 flex flex-col sm:flex-row gap-4">
+                <Button
+                  size="lg"
+                  className="bg-black hover:bg-gray-800 text-white rounded-full px-8 h-14 text-base font-semibold tracking-wide transition-transform hover:scale-105"
+                  onClick={() => {
+                    document.getElementById('products-section')?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                >
+                  Shop Now
+                </Button>
+                <Link to="#products-section" onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('products-section')?.scrollIntoView({ behavior: 'smooth' })
+                }}>
                   <Button
-                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-2"
-                    onClick={() => addToCart({
-                      name: product.name,
-                      price: product.price,
-                      image: product.image?.[0] || "",
-                    })}
+                    size="lg"
+                    variant="outline"
+                    className="border-gray-300 text-black hover:bg-white rounded-full px-8 h-14 text-base font-semibold tracking-wide"
                   >
-                    <ShoppingCart className="w-4 h-4 mr-2" />
-                    Add to Cart
+                    View Details
                   </Button>
-                </CardContent>
-              </Card>
-            ))}
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Hero Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative hidden lg:flex items-center justify-center"
+            >
+              <div className="absolute inset-0 bg-gradient-to-tr from-gray-200/50 to-transparent rounded-full filter blur-3xl opacity-50"></div>
+              <img
+                src={heroAudioImage}
+                alt="Smart Audio Earpods"
+                className="w-full max-w-md object-contain mix-blend-multiply drop-shadow-2xl z-10 hover:scale-105 transition-transform duration-700 rounded-3xl"
+              />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
-            Shop by Category
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {categories.slice(1).map((category) => (
+      {/* Categories Bar */}
+      <section className="border-y border-gray-100 bg-white sticky top-[81px] z-40 hidden md:block">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center space-x-8 overflow-x-auto py-4 scrollbar-hide">
+            {categories.map((cat, idx) => (
               <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`p-6 rounded-xl border-2 transition-all duration-300 hover:shadow-lg hover:scale-105 ${
-                  selectedCategory === category
-                    ? "border-blue-500 bg-blue-50 text-blue-700"
-                    : "border-gray-200 bg-gray-50 text-gray-700 hover:border-blue-300"
-                }`}
+                key={idx}
+                onClick={() => setSelectedCategory(cat)}
+                className={`flex items-center space-x-2 whitespace-nowrap px-4 py-2 rounded-full transition-colors ${selectedCategory === cat
+                  ? "bg-black text-white font-medium"
+                  : "text-gray-500 hover:text-black hover:bg-gray-50 font-medium"
+                  }`}
               >
-                <div className="flex flex-col items-center space-y-3">
-                  {getCategoryIcon(category)}
-                  <span className="font-semibold capitalize text-sm">{category}</span>
-                </div>
+                {cat !== "All" && getCategoryIcon(cat)}
+                <span className="capitalize">{categoryLabel[cat] ?? cat}</span>
               </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Filters and Products */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row gap-8 mb-12">
-            {/* Brand Filter */}
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold mb-4 text-gray-800">Filter by Brand</h3>
-              <div className="flex gap-3 flex-wrap">
-                {brands.map((brand) => (
-                  <button
-                    key={brand}
-                    onClick={() => setSelectedBrand(brand)}
-                    className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                      selectedBrand === brand
-                        ? "bg-blue-600 text-white shadow-lg"
-                        : "bg-white text-gray-700 border border-gray-300 hover:bg-blue-50 hover:border-blue-300"
-                    }`}
-                  >
-                    {brand}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
+      {/* Main Product Grid */}
+      <section id="products-section" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
 
-          {/* Products Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filteredProducts.map((product) => (
-              <Card key={product.id} className="group overflow-hidden border border-gray-200 hover:border-blue-300 shadow-md hover:shadow-xl transition-all duration-300 bg-white">
-                <Link to={`/product/${product.id}`}>
-                  <div className="aspect-square bg-gray-50 flex items-center justify-center p-4 overflow-hidden relative">
-                    <img
-                      src={product.image?.[0]}
-                      alt={product.name}
-                      className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                </Link>
-                <CardContent className="p-4 space-y-2">
-                  <h3 className="text-sm font-medium line-clamp-2 text-gray-800 group-hover:text-blue-600 transition-colors">
-                    {product.name}
-                  </h3>
-                  <p className="text-lg font-bold text-green-600">
-                    ₹{product.price}
-                  </p>
-                  <Button
-                    className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-medium py-2 text-sm"
-                    onClick={() => addToCart({
-                      name: product.name,
-                      price: product.price,
-                      image: product.image?.[0] || "",
-                    })}
-                  >
-                    <ShoppingCart className="w-4 h-4 mr-2" />
-                    Add to Cart
-                  </Button>
-                </CardContent>
-              </Card>
+        {/* Mobile Categories Select */}
+        <div className="md:hidden mb-8">
+          <label className="block text-sm font-bold tracking-wide text-gray-500 uppercase mb-2">Category</label>
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="w-full bg-[#f5f5f7] border-0 rounded-xl px-4 py-4 text-base font-medium focus:ring-2 focus:ring-black"
+          >
+            {categories.map((cat, idx) => (
+              <option key={idx} value={cat}>{categoryLabel[cat] ?? cat}</option>
             ))}
+          </select>
+        </div>
+
+        <div className="flex items-end justify-between mb-10">
+          <div>
+            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-black">
+              {categoryLabel[selectedCategory] ?? selectedCategory}
+            </h2>
+            <p className="text-gray-500 mt-2 text-lg">{filteredProducts.length} Results</p>
           </div>
         </div>
+
+        <motion.div layout className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          <AnimatePresence mode="popLayout">
+            {filteredProducts.map((product) => (
+              <motion.div
+                layout
+                key={product.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="group flex flex-col"
+              >
+                <div className="bg-[#f5f5f7] rounded-3xl aspect-[4/5] sm:aspect-square flex items-center justify-center mb-4 sm:mb-6 relative overflow-hidden group/img">
+                  <Link to={`/product/${product.id}`} className="absolute inset-0 z-10" />
+                  <motion.img
+                    src={product.image?.[0]}
+                    alt={product.name}
+                    className="w-full h-full object-cover rounded-md mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {/* Quick Add Button - Desktop Only */}
+                  <div className="hidden sm:block absolute bottom-4 left-4 right-4 z-20 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <Button
+                      className="w-full bg-white hover:bg-black text-black hover:text-white rounded-full h-12 font-semibold tracking-wide shadow-lg border border-gray-100"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        addToCart({ name: product.name, price: product.price, image: product.image?.[0] || "" })
+                      }}
+                    >
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      Add to Cart
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="flex flex-col flex-1 px-1 sm:px-2">
+                  <span className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 sm:mb-1.5">
+                    {product.brand}
+                  </span>
+                  <Link to={`/product/${product.id}`}>
+                    <h3 className="text-sm sm:text-lg font-bold text-gray-900 line-clamp-2 leading-tight group-hover:text-[#ff4500] transition-colors">
+                      {product.name}
+                    </h3>
+                  </Link>
+                  <div className="mt-auto pt-2 sm:pt-3 flex items-center justify-between">
+                    <p className="text-base sm:text-xl font-bold text-black">
+                      ₹{product.price.toLocaleString()}
+                    </p>
+                  </div>
+                  {/* Mobile Quick Add */}
+                  <div className="sm:hidden mt-3">
+                    <Button
+                      className="w-full bg-black hover:bg-gray-800 text-white rounded-xl h-10 font-medium text-xs tracking-wide"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        addToCart({ name: product.name, price: product.price, image: product.image?.[0] || "" })
+                      }}
+                    >
+                      Add to Cart
+                    </Button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 px-4 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Stay Updated
-          </h2>
-          <p className="text-xl mb-8 text-gray-300">
-            Get the latest deals and new product launches delivered to your inbox
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <Button className="bg-blue-600 hover:bg-blue-700 px-6 py-3 font-semibold">
-              Subscribe
-            </Button>
+      <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
+        <div className="bg-black rounded-3xl p-8 sm:p-12 lg:p-20 text-center relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#ff4500] rounded-full mix-blend-screen filter blur-[100px] opacity-40 translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500 rounded-full mix-blend-screen filter blur-[100px] opacity-20 -translate-x-1/2 translate-y-1/2" />
+
+          <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+            <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">
+              Join the Club
+            </h2>
+            <p className="text-lg text-gray-400 mb-8 max-w-lg mx-auto">
+              Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.
+            </p>
+            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                className="flex-1 bg-white/10 border border-white/20 text-white placeholder:text-gray-500 rounded-full px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[#ff4500] transition-shadow h-14"
+              />
+              <Button
+                type="submit"
+                className="bg-[#ff4500] hover:bg-[#ff5500] text-white rounded-full px-8 h-14 font-semibold tracking-wide"
+              >
+                Subscribe
+              </Button>
+            </form>
           </div>
         </div>
       </section>
