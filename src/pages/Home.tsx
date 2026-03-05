@@ -45,8 +45,8 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-white text-gray-900 selection:bg-[#ff4500] selection:text-white pb-20">
 
-      {/* Hero Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8 lg:py-12 max-w-[1400px] mx-auto">
+      {/* Hero Section — hidden on mobile */}
+      <section className="hidden sm:block px-4 sm:px-6 lg:px-8 py-8 lg:py-12 max-w-[1400px] mx-auto">
         <div className="bg-[#f5f5f7] rounded-3xl overflow-hidden relative min-h-[500px] lg:min-h-[600px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-8 w-full p-8 md:p-12 lg:p-20 z-10">
             <motion.div
@@ -64,28 +64,26 @@ const Home = () => {
               <p className="text-lg text-gray-500 max-w-md leading-relaxed">
                 Discover trending gadgets, high-tech drones, audio devices, and smart accessories at unbeatable deals.
               </p>
-              <div className="pt-4 flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-black hover:bg-gray-800 text-white rounded-full px-8 h-14 text-base font-semibold tracking-wide transition-transform hover:scale-105"
-                  onClick={() => {
-                    document.getElementById('products-section')?.scrollIntoView({ behavior: 'smooth' })
-                  }}
-                >
-                  Shop Now
-                </Button>
-                <Link to="#products-section" onClick={(e) => {
-                  e.preventDefault()
-                  document.getElementById('products-section')?.scrollIntoView({ behavior: 'smooth' })
-                }}>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-gray-300 text-black hover:bg-white rounded-full px-8 h-14 text-base font-semibold tracking-wide"
+              <div className="pt-4 flex flex-wrap gap-3">
+                {[
+                  { key: "audio", label: "Smart Audio", icon: <Headphones className="w-4 h-4" /> },
+                  { key: "watch", label: "Watches", icon: <Watch className="w-4 h-4" /> },
+                  { key: "smartwatch", label: "Smartwatches", icon: <Smartphone className="w-4 h-4" /> },
+                  { key: "combo", label: "Combos", icon: <Package className="w-4 h-4" /> },
+                  { key: "accessory", label: "Accessories", icon: <Zap className="w-4 h-4" /> },
+                ].map((cat) => (
+                  <button
+                    key={cat.key}
+                    onClick={() => {
+                      setSelectedCategory(cat.key)
+                      document.getElementById('products-section')?.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                    className="flex items-center gap-2 bg-white hover:bg-black hover:text-white text-gray-800 border border-gray-200 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 hover:scale-105 hover:border-black shadow-sm"
                   >
-                    View Details
-                  </Button>
-                </Link>
+                    {cat.icon}
+                    {cat.label}
+                  </button>
+                ))}
               </div>
             </motion.div>
 
@@ -107,21 +105,51 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Categories Bar */}
+      {/* Marquee ticker */}
+      <div className="overflow-hidden border-y border-gray-100 bg-[#f9f9f9] py-3">
+        <style>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .marquee-track { animation: marquee 18s linear infinite; }
+        `}</style>
+        <div className="flex whitespace-nowrap marquee-track">
+          {[...Array(2)].map((_, round) => (
+            <span key={round} className="flex items-center">
+              {["Smart Audio", "Watches", "Smartwatches", "Combos & Bundles", "Accessories"].map((label, i) => (
+                <span key={i} className="inline-flex items-center mx-6 text-sm font-bold uppercase tracking-widest text-gray-400">
+                  <span className="mr-6 text-[#ff4500]">✦</span>
+                  {label}
+                </span>
+              ))}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Categories Bar - Desktop */}
       <section className="border-y border-gray-100 bg-white sticky top-[81px] z-40 hidden md:block">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center space-x-8 overflow-x-auto py-4 scrollbar-hide">
+          <div className="flex items-center space-x-2 overflow-x-auto py-4 scrollbar-hide">
             {categories.map((cat, idx) => (
               <button
                 key={idx}
                 onClick={() => setSelectedCategory(cat)}
-                className={`flex items-center space-x-2 whitespace-nowrap px-4 py-2 rounded-full transition-colors ${selectedCategory === cat
-                  ? "bg-black text-white font-medium"
-                  : "text-gray-500 hover:text-black hover:bg-gray-50 font-medium"
-                  }`}
+                className="relative flex items-center space-x-2 whitespace-nowrap px-4 py-2 rounded-full font-medium text-sm transition-colors z-10"
+                style={{ color: selectedCategory === cat ? '#fff' : '#6b7280' }}
               >
-                {cat !== "All" && getCategoryIcon(cat)}
-                <span className="capitalize">{categoryLabel[cat] ?? cat}</span>
+                {selectedCategory === cat && (
+                  <motion.div
+                    layoutId="desktop-pill"
+                    className="absolute inset-0 bg-black rounded-full"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  {cat !== "All" && getCategoryIcon(cat)}
+                  <span>{categoryLabel[cat] ?? cat}</span>
+                </span>
               </button>
             ))}
           </div>
@@ -131,18 +159,30 @@ const Home = () => {
       {/* Main Product Grid */}
       <section id="products-section" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
 
-        {/* Mobile Categories Select */}
-        <div className="md:hidden mb-8">
-          <label className="block text-sm font-bold tracking-wide text-gray-500 uppercase mb-2">Category</label>
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="w-full bg-[#f5f5f7] border-0 rounded-xl px-4 py-4 text-base font-medium focus:ring-2 focus:ring-black"
-          >
+        {/* Mobile Categories — 2 row grid */}
+        <div className="md:hidden -mx-4 px-4 mb-8 bg-white border-b border-gray-100 py-3">
+          <div className="flex flex-wrap gap-2 justify-start">
             {categories.map((cat, idx) => (
-              <option key={idx} value={cat}>{categoryLabel[cat] ?? cat}</option>
+              <button
+                key={idx}
+                onClick={() => setSelectedCategory(cat)}
+                className="relative flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold z-10"
+                style={{ color: selectedCategory === cat ? '#fff' : '#4b5563' }}
+              >
+                {selectedCategory === cat && (
+                  <motion.div
+                    layoutId="mobile-pill"
+                    className="absolute inset-0 bg-black rounded-full"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  {cat !== "All" && getCategoryIcon(cat)}
+                  {categoryLabel[cat] ?? cat}
+                </span>
+              </button>
             ))}
-          </select>
+          </div>
         </div>
 
         <div className="flex items-end justify-between mb-10">
