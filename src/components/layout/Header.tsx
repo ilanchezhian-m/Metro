@@ -6,7 +6,7 @@ import { useCart } from "@/context/CartContext"
 import {
   Menubar,
   MenubarMenu,
-  MenubarTrigger,
+  // MenubarTrigger,
   MenubarContent,
   MenubarItem,
 } from "@/components/ui/menubar"
@@ -41,7 +41,7 @@ const Header = () => {
         <div className="hidden md:block">
           <Menubar>
             <MenubarMenu>
-              <MenubarTrigger>Shop</MenubarTrigger>
+              {/* <MenubarTrigger>Shop</MenubarTrigger> */}
               <MenubarContent>
                 <MenubarItem asChild>
                   <Link to="/shop">All products</Link>
