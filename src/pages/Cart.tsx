@@ -65,10 +65,10 @@ const Cart = () => {
             </Link>
           </motion.div>
         ) : (
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="flex flex-col gap-8 lg:gap-12 max-w-4xl mx-auto items-center w-full">
 
             {/* Products List */}
-            <div className="lg:col-span-7 xl:col-span-8 space-y-4">
+            <div className="w-full space-y-4">
               <AnimatePresence>
                 {cart.map((item) => (
                   <motion.div
@@ -140,7 +140,7 @@ const Cart = () => {
             </div>
 
             {/* Checkout / Summary */}
-            <div className="lg:col-span-5 xl:col-span-4 sticky top-24">
+            <div className="w-full">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
