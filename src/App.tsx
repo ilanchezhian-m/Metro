@@ -6,6 +6,8 @@ import Cart from "./pages/Cart"
 import ProductPage from "./pages/Productpage"
 import NotFound from "./pages/NotFound"
 
+
+
 function App() {
   return (
     <BrowserRouter>

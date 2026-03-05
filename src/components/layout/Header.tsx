@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { ShoppingCart, User, Search } from "lucide-react"
+import { ShoppingCart, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useCart } from "@/context/CartContext"
@@ -73,12 +73,12 @@ const Header = () => {
           </Button>
 
           {/* Account */}
-          <Button variant="outline" size="sm" asChild>
+          {/* <Button variant="outline" size="sm" asChild>
             <Link to="/account">
               <User className="w-4 h-4 mr-2" />
               Account
             </Link>
-          </Button>
+          </Button> */}
 
         </div>
       </div>
