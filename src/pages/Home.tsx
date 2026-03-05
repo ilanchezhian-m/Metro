@@ -130,7 +130,7 @@ const Home = () => {
 
       {/* Categories Bar - Desktop */}
       <section className="border-y border-gray-100 bg-white sticky top-[81px] z-40 hidden md:block">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1600px] mx-auto px-3 sm:px-4 lg:px-6">
           <div className="flex items-center space-x-2 overflow-x-auto py-4 scrollbar-hide">
             {categories.map((cat, idx) => (
               <button
@@ -157,10 +157,10 @@ const Home = () => {
       </section>
 
       {/* Main Product Grid */}
-      <section id="products-section" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
+      <section id="products-section" className="py-10 lg:py-20 px-2 sm:px-3 lg:px-6 max-w-[1600px] mx-auto">
 
         {/* Mobile Categories — 2 row grid */}
-        <div className="md:hidden -mx-4 px-4 mb-8 bg-white border-b border-gray-100 py-3">
+        <div className="md:hidden -mx-2 px-2 mb-6 bg-white border-b border-gray-100 py-3">
           <div className="flex flex-wrap gap-2 justify-start">
             {categories.map((cat, idx) => (
               <button
@@ -194,7 +194,7 @@ const Home = () => {
           </div>
         </div>
 
-        <motion.div layout className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+        <motion.div layout className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-5">
           <AnimatePresence mode="popLayout">
             {filteredProducts.map((product) => (
               <motion.div
@@ -204,9 +204,9 @@ const Home = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
-                className="group flex flex-col"
+                className="group flex flex-col bg-[#f5f5f7] rounded-2xl sm:rounded-3xl p-2 sm:p-3 hover:shadow-md transition-shadow duration-300"
               >
-                <div className="bg-[#f5f5f7] rounded-3xl aspect-[4/5] sm:aspect-square flex items-center justify-center mb-4 sm:mb-6 relative overflow-hidden group/img">
+                <div className="bg-white rounded-xl sm:rounded-2xl aspect-[4/5] sm:aspect-square flex items-center justify-center mb-2 sm:mb-3 relative overflow-hidden">
                   <Link to={`/product/${product.id}`} className="absolute inset-0 z-10" />
                   <motion.img
                     src={product.image?.[0]}
@@ -214,46 +214,32 @@ const Home = () => {
                     className="w-full h-full object-cover rounded-md mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
                   />
                   {/* Quick Add Button - Desktop Only */}
-                  <div className="hidden sm:block absolute bottom-4 left-4 right-4 z-20 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="hidden sm:block absolute bottom-3 left-3 right-3 z-20 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                     <Button
-                      className="w-full bg-white hover:bg-black text-black hover:text-white rounded-full h-12 font-semibold tracking-wide shadow-lg border border-gray-100"
+                      className="w-full bg-white hover:bg-black text-black hover:text-white rounded-full h-10 font-semibold tracking-wide shadow-lg border border-gray-100 text-sm"
                       onClick={(e) => {
                         e.preventDefault()
                         addToCart({ name: product.name, price: product.price, image: product.image?.[0] || "" })
                       }}
                     >
-                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      <ShoppingCart className="w-3.5 h-3.5 mr-2" />
                       Add to Cart
                     </Button>
                   </div>
                 </div>
 
-                <div className="flex flex-col flex-1 px-1 sm:px-2">
-                  <span className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 sm:mb-1.5">
+                <div className="flex flex-col flex-1 px-1 pt-0.5 pb-1">
+                  <span className="text-[9px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest mb-0.5">
                     {product.brand}
                   </span>
                   <Link to={`/product/${product.id}`}>
-                    <h3 className="text-sm sm:text-lg font-bold text-gray-900 line-clamp-2 leading-tight group-hover:text-[#ff4500] transition-colors">
+                    <h3 className="text-xs sm:text-base font-semibold text-gray-900 line-clamp-2 leading-snug group-hover:text-[#ff4500] transition-colors">
                       {product.name}
                     </h3>
                   </Link>
-                  <div className="mt-auto pt-2 sm:pt-3 flex items-center justify-between">
-                    <p className="text-base sm:text-xl font-bold text-black">
-                      ₹{product.price.toLocaleString()}
-                    </p>
-                  </div>
-                  {/* Mobile Quick Add */}
-                  <div className="sm:hidden mt-3">
-                    <Button
-                      className="w-full bg-black hover:bg-gray-800 text-white rounded-xl h-10 font-medium text-xs tracking-wide"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        addToCart({ name: product.name, price: product.price, image: product.image?.[0] || "" })
-                      }}
-                    >
-                      Add to Cart
-                    </Button>
-                  </div>
+                  <p className="mt-1 sm:mt-2 text-sm sm:text-lg font-bold text-black">
+                    ₹{product.price.toLocaleString()}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -262,7 +248,7 @@ const Home = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
+      <section className="py-12 lg:py-20 px-2 sm:px-4 lg:px-6 max-w-[1600px] mx-auto">
         <div className="bg-black rounded-3xl p-8 sm:p-12 lg:p-20 text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#ff4500] rounded-full mix-blend-screen filter blur-[100px] opacity-40 translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500 rounded-full mix-blend-screen filter blur-[100px] opacity-20 -translate-x-1/2 translate-y-1/2" />
