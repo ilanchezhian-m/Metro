@@ -194,7 +194,7 @@ const Home = () => {
           </div>
         </div>
 
-        <motion.div layout className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-5">
+        <motion.div layout className="grid grid-cols-1 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-5">
           <AnimatePresence mode="popLayout">
             {filteredProducts.map((product) => (
               <motion.div
@@ -216,13 +216,13 @@ const Home = () => {
                   {/* Quick Add Button - Desktop Only */}
                   <div className="hidden sm:block absolute bottom-3 left-3 right-3 z-20 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                     <Button
-                      className="w-full bg-white hover:bg-black text-black hover:text-white rounded-full h-10 font-semibold tracking-wide shadow-lg border border-gray-100 text-sm"
+                      className="w-full bg-[#ff4500] hover:bg-[#ff5500] text-white rounded-full h-11 font-semibold tracking-wide shadow-[0_8px_20px_rgb(255,69,0,0.3)] hover:shadow-[0_8px_20px_rgb(255,69,0,0.5)] border-0 text-sm transition-all transform hover:-translate-y-0.5"
                       onClick={(e) => {
                         e.preventDefault()
                         addToCart({ name: product.name, price: product.price, image: product.image?.[0] || "" })
                       }}
                     >
-                      <ShoppingCart className="w-3.5 h-3.5 mr-2" />
+                      <ShoppingCart className="w-4 h-4 mr-2" />
                       Add to Cart
                     </Button>
                   </div>
@@ -237,9 +237,25 @@ const Home = () => {
                       {product.name}
                     </h3>
                   </Link>
-                  <p className="mt-1 sm:mt-2 text-sm sm:text-lg font-bold text-black">
-                    ₹{product.price.toLocaleString()}
-                  </p>
+                  <div className="mt-1 sm:mt-2 flex items-center justify-between">
+                    <p className="text-sm sm:text-lg font-bold text-black">
+                      ₹{product.price.toLocaleString()}
+                    </p>
+                  </div>
+
+                  {/* Mobile Add to Cart - Persistent */}
+                  <div className="sm:hidden mt-3">
+                    <Button
+                      className="w-full bg-[#ff4500] hover:bg-[#ff5500] text-white rounded-xl h-10 font-bold text-[10px] tracking-wider uppercase shadow-sm active:scale-95 transition-all"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        addToCart({ name: product.name, price: product.price, image: product.image?.[0] || "" })
+                      }}
+                    >
+                      <ShoppingCart className="w-3.5 h-3.5 mr-2" />
+                      Add to Cart
+                    </Button>
+                  </div>
                 </div>
               </motion.div>
             ))}
