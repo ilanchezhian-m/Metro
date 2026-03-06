@@ -12,6 +12,7 @@ const Checkout = () => {
 
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
+    const [altPhone, setAltPhone] = useState("")
     const [address, setAddress] = useState("")
     const [pincode, setPincode] = useState("")
     const [landmark, setLandmark] = useState("")
@@ -39,13 +40,20 @@ const Checkout = () => {
             return
         }
 
+        const isValidPincode = /^[1-9][0-9]{5}$/.test(pincode);
+        if (!isValidPincode) {
+            alert("Please enter a valid 6-digit Indian PIN code")
+            return
+        }
+
         const productList = cart
             .map((item) => `${item.name} (x${item.quantity}) - ₹${item.price * item.quantity}`)
             .join("%0A")
 
-        const message = `Order Details:%0A${productList}%0A%0ATotal items: ${totalItems}%0ATotal price: ₹${totalPrice}%0A%0A*Delivery Details:*%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0APincode: ${pincode}%0ALandmark: ${landmark}`
+        const altPhoneText = altPhone ? `%0AAlternate Phone: ${altPhone}` : "";
+        const message = `Order Details:%0A${productList}%0A%0ATotal items: ${totalItems}%0ATotal price: ₹${totalPrice}%0A%0A*Delivery Details:*%0AName: ${name}%0APhone: ${phone}${altPhoneText}%0AAddress: ${address}%0ALandmark: ${landmark}%0APincode: ${pincode}`
 
-        window.open(`https://wa.me/916381041017?text=${message}`, "_blank")
+        window.open(`https://wa.me/919443353813?text=${message}`, "_blank")
     }
 
     if (cart.length === 0) return null;
@@ -87,25 +95,41 @@ const Checkout = () => {
                                     />
                                 </div>
 
-                                <div className="space-y-1.5">
-                                    <label className="text-sm font-semibold text-gray-700 ml-1">Phone Number *</label>
-                                    <Input
-                                        placeholder="9876543210 or 09876543210"
-                                        type="tel"
-                                        value={phone}
-                                        onChange={(e) => {
-                                            const val = e.target.value.replace(/\D/g, "");
-                                            const maxLength = val.startsWith("0") ? 11 : 10;
-                                            if (val.length <= maxLength) setPhone(val);
-                                        }}
-                                        className="bg-[#f9f9fa] border-transparent shadow-sm rounded-xl px-4 py-6 text-base focus-visible:ring-2 focus-visible:ring-black focus-visible:bg-white transition-all"
-                                    />
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div className="space-y-1.5">
+                                        <label className="text-sm font-semibold text-gray-700 ml-1">Phone Number *</label>
+                                        <Input
+                                            placeholder="9876543210 or 09876543210"
+                                            type="tel"
+                                            value={phone}
+                                            onChange={(e) => {
+                                                const val = e.target.value.replace(/\D/g, "");
+                                                const maxLength = val.startsWith("0") ? 11 : 10;
+                                                if (val.length <= maxLength) setPhone(val);
+                                            }}
+                                            className="bg-[#f9f9fa] border-transparent shadow-sm rounded-xl px-4 py-6 text-base focus-visible:ring-2 focus-visible:ring-black focus-visible:bg-white transition-all"
+                                        />
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <label className="text-sm font-semibold text-gray-700 ml-1">Alternate Phone Number</label>
+                                        <Input
+                                            placeholder="Alternate number (Optional)"
+                                            type="tel"
+                                            value={altPhone}
+                                            onChange={(e) => {
+                                                const val = e.target.value.replace(/\D/g, "");
+                                                const maxLength = val.startsWith("0") ? 11 : 10;
+                                                if (val.length <= maxLength) setAltPhone(val);
+                                            }}
+                                            className="bg-[#f9f9fa] border-transparent shadow-sm rounded-xl px-4 py-6 text-base focus-visible:ring-2 focus-visible:ring-black focus-visible:bg-white transition-all"
+                                        />
+                                    </div>
                                 </div>
 
                                 <div className="space-y-1.5">
                                     <label className="text-sm font-semibold text-gray-700 ml-1">Complete Address *</label>
                                     <textarea
-                                        placeholder="House No, Building, Street, City"
+                                        placeholder="House No, Building, Street&#10;City, State"
                                         value={address}
                                         onChange={(e) => setAddress(e.target.value)}
                                         rows={3}
@@ -113,22 +137,25 @@ const Checkout = () => {
                                     ></textarea>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-1.5">
-                                        <label className="text-sm font-semibold text-gray-700 ml-1">Pincode *</label>
-                                        <Input
-                                            placeholder="123456"
-                                            value={pincode}
-                                            onChange={(e) => setPincode(e.target.value)}
-                                            className="bg-[#f9f9fa] border-transparent shadow-sm rounded-xl px-4 py-6 text-base focus-visible:ring-2 focus-visible:ring-black focus-visible:bg-white transition-all"
-                                        />
-                                    </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div className="space-y-1.5">
                                         <label className="text-sm font-semibold text-gray-700 ml-1">Landmark (Optional)</label>
                                         <Input
                                             placeholder="Near City Mall"
                                             value={landmark}
                                             onChange={(e) => setLandmark(e.target.value)}
+                                            className="bg-[#f9f9fa] border-transparent shadow-sm rounded-xl px-4 py-6 text-base focus-visible:ring-2 focus-visible:ring-black focus-visible:bg-white transition-all"
+                                        />
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <label className="text-sm font-semibold text-gray-700 ml-1">Pincode *</label>
+                                        <Input
+                                            placeholder="123456"
+                                            value={pincode}
+                                            onChange={(e) => {
+                                                const val = e.target.value.replace(/\D/g, "");
+                                                if (val.length <= 6) setPincode(val);
+                                            }}
                                             className="bg-[#f9f9fa] border-transparent shadow-sm rounded-xl px-4 py-6 text-base focus-visible:ring-2 focus-visible:ring-black focus-visible:bg-white transition-all"
                                         />
                                     </div>

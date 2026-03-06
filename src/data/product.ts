@@ -37,7 +37,12 @@ import img_id14 from "@/assets/generated/samsung_oneplus_combo_1772705268220.png
 import img_id16 from "@/assets/generated/samsung_buds2_pro_1772705292565.png"
 import img_id17 from "@/assets/generated/oneplus_buds3_pro_1772705309268.png"
 
-import img_id1_new from "@/assets/generated/gen_cmf_combo_1772726049431.png"
+
+import cmfComboHero from "@/assets/cmf combo/cmf_combo_hero_1772772651993.png"
+import cmfComboWatch from "@/assets/cmf combo/cmf_combo_watch_1772772670133.png"
+import cmfComboEarbuds from "@/assets/cmf combo/cmf_combo_earbuds_1772772701038.png"
+import cmfComboCharger from "@/assets/cmf combo/cmf_combo_charger_1772772718103.png"
+import cmfComboLifestyle from "@/assets/cmf combo/cmf_combo_lifestyle_1772772731420.png"
 import img_id2_new from "@/assets/generated/gen_cmf_neckband_1772726067592.png"
 import img_id3_new from "@/assets/generated/gen_fossil_watch_1772726086773.png"
 import img_id4_new from "@/assets/generated/gen_iwatch_1772726103415.png"
@@ -69,7 +74,7 @@ export const products: Product[] = [
     category: "audio",
     price: 899,
     description: "Combo pack including CMF earbuds and accessories. Budget friendly audio bundle.",
-    image: [img_id1_new],
+    image: [cmfComboHero, cmfComboWatch, cmfComboEarbuds, cmfComboCharger, cmfComboLifestyle],
     stock: 50,
     rating: 4.3,
     featured: true

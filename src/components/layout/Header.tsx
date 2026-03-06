@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input"
 import { useCart } from "@/context/CartContext"
 import { motion, AnimatePresence } from "framer-motion"
 
-import logo from "@/assets/metro.png"
 
 const Header = () => {
   const { cart } = useCart()
@@ -44,15 +43,11 @@ const Header = () => {
 
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 shrink-0">
-              <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center overflow-hidden">
-                <img
-                  src={logo}
-                  alt="Metro Gadgets Logo"
-                  className="w-full h-full object-cover"
-                />
+              <div className="h-10 px-3 rounded-xl bg-gradient-to-br from-gray-900 to-black flex items-center justify-center shadow-lg pointer-events-none">
+                <span className="text-white font-black text-sm tracking-tighter uppercase">Logo</span>
               </div>
               <span className="text-xl font-extrabold tracking-tight text-gray-900 uppercase hidden sm:block">
-                Metro Gadgets
+                Company Name
               </span>
             </Link>
 
@@ -147,8 +142,8 @@ const Header = () => {
             >
               <div className="flex items-center justify-between p-6 border-b border-gray-100">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-black overflow-hidden flex items-center justify-center">
-                    <img src={logo} alt="Logo" className="w-full h-full object-cover" />
+                  <div className="h-8 px-2 rounded-lg bg-gradient-to-br from-gray-900 to-black overflow-hidden flex items-center justify-center shadow-md">
+                    <span className="text-white font-black text-xs tracking-tighter uppercase">Logo</span>
                   </div>
                   <span className="text-lg font-bold tracking-tight uppercase">Menu</span>
                 </div>
