@@ -67,7 +67,7 @@ const Footer = () => {
               <img src={instagram} alt="Instagram" className="w-5 h-5" />
             </a>
             <a
-              href="https://wa.me/919443353813"
+              href="https://wa.me/916381041017"
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 rounded-full bg-gray-800/60 hover:bg-gray-700 flex items-center justify-center transition-colors"
