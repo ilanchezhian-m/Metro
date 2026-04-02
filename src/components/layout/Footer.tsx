@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { Phone, MapPin, Shield, Truck, Video } from "lucide-react"
 import instagram from "../../assets/footer/instagram.svg"
 import whatsapp from "../../assets/footer/whatsapp.svg"
+import logo from '../../assets/gadgetsmart1.png'
 
 const Footer = () => {
   return (
@@ -47,10 +48,10 @@ const Footer = () => {
         {/* Brand */}
         <div className="space-y-4">
           <Link to="/" className="flex items-center gap-3">
-            <div className="h-10 px-3 rounded-xl bg-gradient-to-br from-gray-900 to-black flex items-center justify-center shadow-lg pointer-events-none">
-              <span className="text-white font-black text-sm tracking-tighter uppercase">Logo</span>
-            </div>
-            <span className="text-lg font-extrabold tracking-tight uppercase text-white">Company Name</span>
+           
+            <img className="w-24 " src={logo} alt="" />
+            
+            {/* <span className="text-lg font-extrabold tracking-tight uppercase text-white">GADGETSMART</span> */}
           </Link>
           <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
             Your trusted source for the latest gadgets, audio gear, smartwatches, and more — at unbeatable prices.
@@ -105,8 +106,8 @@ const Footer = () => {
           <ul className="space-y-4">
             <li className="flex items-start gap-3 text-sm text-gray-400">
               <Phone className="w-4 h-4 mt-0.5 text-[#ff4500] flex-shrink-0" />
-              <a href="https://wa.me/919443353813" className="hover:text-white transition-colors">
-                +91 (Mobile number )
+              <a href="https://wa.me/916381041017" className="hover:text-white transition-colors">
+                6381041017
               </a>
             </li>
             <li className="flex items-start gap-3 text-sm text-gray-400">
@@ -115,7 +116,7 @@ const Footer = () => {
             </li>
           </ul>
           <a
-            href="https://wa.me/919443353813"
+            href="https://wa.me/916381041017"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 mt-6 bg-[#ff4500] hover:bg-[#ff5500] text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors"
@@ -131,7 +132,7 @@ const Footer = () => {
       <div className="border-t border-gray-800">
         <div className="max-w-[1400px] mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-xs text-gray-500">
-            © {new Date().getFullYear()} Company Name. All rights reserved.
+            © {new Date().getFullYear()} GADGETS MART. All rights reserved.
           </p>
           <p className="text-xs text-gray-600">
             Crafted with ❤️ for gadget lovers

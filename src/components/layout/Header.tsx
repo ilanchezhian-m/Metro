@@ -4,6 +4,7 @@ import { ShoppingCart, Search, Menu, X, ChevronRight } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { useCart } from "@/context/CartContext"
 import { motion, AnimatePresence } from "framer-motion"
+import logo from '../../assets/gadgetsmart1.png'
 
 
 const Header = () => {
@@ -43,12 +44,12 @@ const Header = () => {
 
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 shrink-0">
-              <div className="h-10 px-3 rounded-xl bg-gradient-to-br from-gray-900 to-black flex items-center justify-center shadow-lg pointer-events-none">
-                <span className="text-white font-black text-sm tracking-tighter uppercase">Logo</span>
-              </div>
-              <span className="text-xl font-extrabold tracking-tight text-gray-900 uppercase hidden sm:block">
-                Company Name
-              </span>
+              
+                <img className="w-24 " src={logo} alt="" />
+         
+              {/* <span className="text-xl font-extrabold tracking-tight text-gray-900 uppercase hidden sm:block">
+                <span>GADGE </span>TS MART
+              </span> */}
             </Link>
 
             {/* Desktop Navigation */}

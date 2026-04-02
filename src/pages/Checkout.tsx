@@ -53,7 +53,7 @@ const Checkout = () => {
         const altPhoneText = altPhone ? `%0AAlternate Phone: ${altPhone}` : "";
         const message = `Order Details:%0A${productList}%0A%0ATotal items: ${totalItems}%0ATotal price: ₹${totalPrice}%0A%0A*Delivery Details:*%0AName: ${name}%0APhone: ${phone}${altPhoneText}%0AAddress: ${address}%0ALandmark: ${landmark}%0APincode: ${pincode}`
 
-        window.open(`https://wa.me/919443353813?text=${message}`, "_blank")
+        window.open(`https://wa.me/916381041017?text=${message}`, "_blank")
     }
 
     if (cart.length === 0) return null;
@@ -88,7 +88,7 @@ const Checkout = () => {
                                 <div className="space-y-1.5">
                                     <label className="text-sm font-semibold text-gray-700 ml-1">Full Name *</label>
                                     <Input
-                                        placeholder="John Doe"
+                                        placeholder="Type your name here"
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                         className="bg-[#f9f9fa] border-transparent shadow-sm rounded-xl px-4 py-6 text-base focus-visible:ring-2 focus-visible:ring-black focus-visible:bg-white transition-all"
@@ -99,7 +99,7 @@ const Checkout = () => {
                                     <div className="space-y-1.5">
                                         <label className="text-sm font-semibold text-gray-700 ml-1">Phone Number *</label>
                                         <Input
-                                            placeholder="9876543210 or 09876543210"
+                                            placeholder="Phone Number"
                                             type="tel"
                                             value={phone}
                                             onChange={(e) => {
@@ -111,9 +111,9 @@ const Checkout = () => {
                                         />
                                     </div>
                                     <div className="space-y-1.5">
-                                        <label className="text-sm font-semibold text-gray-700 ml-1">Alternate Phone Number</label>
+                                        <label className="text-sm font-semibold text-gray-700 ml-1">Email(Optional)</label>
                                         <Input
-                                            placeholder="Alternate number (Optional)"
+                                            placeholder="Email"
                                             type="tel"
                                             value={altPhone}
                                             onChange={(e) => {
@@ -141,7 +141,7 @@ const Checkout = () => {
                                     <div className="space-y-1.5">
                                         <label className="text-sm font-semibold text-gray-700 ml-1">Landmark (Optional)</label>
                                         <Input
-                                            placeholder="Near City Mall"
+                                            placeholder=" "
                                             value={landmark}
                                             onChange={(e) => setLandmark(e.target.value)}
                                             className="bg-[#f9f9fa] border-transparent shadow-sm rounded-xl px-4 py-6 text-base focus-visible:ring-2 focus-visible:ring-black focus-visible:bg-white transition-all"
@@ -150,7 +150,7 @@ const Checkout = () => {
                                     <div className="space-y-1.5">
                                         <label className="text-sm font-semibold text-gray-700 ml-1">Pincode *</label>
                                         <Input
-                                            placeholder="123456"
+                                            placeholder=" "
                                             value={pincode}
                                             onChange={(e) => {
                                                 const val = e.target.value.replace(/\D/g, "");
