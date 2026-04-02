@@ -101,7 +101,7 @@ const Footer = () => {
         </div>
 
         {/* Contact */}
-        <div>
+        <div id="contact-us">
           <h3 className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-5">Contact Us</h3>
           <ul className="space-y-4">
             <li className="flex items-start gap-3 text-sm text-gray-400">
@@ -110,8 +110,17 @@ const Footer = () => {
                 6381041017
               </a>
             </li>
-            <li className="flex items-start gap-3 text-sm text-gray-400">
+             <li className="flex items-start gap-3 text-sm text-gray-400">
               <MapPin className="w-4 h-4 mt-0.5 text-[#ff4500] flex-shrink-0" />
+
+                <span>Coimbatore</span>
+            </li>
+            <li className="flex items-start gap-3 text-sm text-gray-400">
+              
+              <MapPin className="w-4 h-4 mt-0.5 text-[#ff4500] flex-shrink-0" />
+              
+            
+              
               <span>PAN India Delivery Available</span>
             </li>
           </ul>

@@ -287,7 +287,7 @@ const ProductPage = () => {
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-gray-900">Free Returns</h4>
-                    <p className="text-xs text-gray-500 mt-0.5">Within 30 days</p>
+                    <p className="text-xs text-gray-500 mt-0.5">Within 3 to 4 days</p>
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">

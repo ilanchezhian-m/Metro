@@ -143,9 +143,7 @@ const Header = () => {
             >
               <div className="flex items-center justify-between p-6 border-b border-gray-100">
                 <div className="flex items-center gap-3">
-                  <div className="h-8 px-2 rounded-lg bg-gradient-to-br from-gray-900 to-black overflow-hidden flex items-center justify-center shadow-md">
-                    <span className="text-white font-black text-xs tracking-tighter uppercase">Logo</span>
-                  </div>
+                 <img className="w-24 " src={logo} alt="" />
                   <span className="text-lg font-bold tracking-tight uppercase">Menu</span>
                 </div>
                 <button
@@ -176,11 +174,22 @@ const Header = () => {
 
                 <div className="mt-8 px-8">
                   <div className="h-px bg-gray-100 w-full mb-8"></div>
-                  <nav className="space-y-4">
-                    <Link to="/" className="block text-gray-500 font-medium hover:text-black transition-colors">About Us</Link>
-                    <Link to="/" className="block text-gray-500 font-medium hover:text-black transition-colors">Support center</Link>
-                    <Link to="/" className="block text-gray-500 font-medium hover:text-black transition-colors">Track Order</Link>
-                  </nav>
+                 <nav className="space-y-4">
+                  <a 
+                    href="#contact-us" 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block text-gray-500 font-medium hover:text-black transition-colors"
+                  >
+                    Contact Us
+                  </a>
+                  <a 
+                    href="#contact-us" 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block text-gray-500 font-medium hover:text-black transition-colors"
+                  >
+                    Support Center
+                  </a>
+                </nav>
                 </div>
               </div>
             </motion.div>
