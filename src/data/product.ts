@@ -25,7 +25,20 @@ import active2image2 from "@/assets/samsung galaxy active 2/active2image2.jpeg"
 import active2image3 from "@/assets/samsung galaxy active 2/active3image3.jpeg"
 import active2image4 from "@/assets/samsung galaxy active 2/active4iamge4.jpeg"
 
+// cmf neckband 
 
+import img_id2_new from "@/assets/generated/gen_cmf_neckband_1772726067592.png"
+import neckband1 from "@/assets/cmf neckband/neckband1.webp"
+import neckband2 from "@/assets/cmf neckband/neckband2.webp"
+import neckband3 from "@/assets/cmf neckband/neckband3.webp"
+import neckband4 from "@/assets/cmf neckband/neckband4.webp"
+
+
+
+
+
+
+import img_id9 from "@/assets/generated/cmf_buds_neckband_1772705195429.png"
 
 
 
@@ -35,7 +48,7 @@ import active2image4 from "@/assets/samsung galaxy active 2/active4iamge4.jpeg"
 import img_id6 from "@/assets/generated/airpods_magsafe_combo_1772705132517.png"
 import img_id7 from "@/assets/generated/airpods_pro_gen2_1772705148195.png"
 import img_id8 from "@/assets/generated/airpods_pro_gen2_alt_1772705178160.png"
-import img_id9 from "@/assets/generated/cmf_buds_neckband_1772705195429.png"
+
 import img_id10 from "@/assets/generated/cmf_buds_pro_button_1772705220670.png"
 import img_id11 from "@/assets/generated/cmf_neckband_roller_1772705237229.png"
 import img_id12 from "@/assets/generated/cmf_buds_1772705253893.png"
@@ -49,7 +62,7 @@ import cmfComboWatch from "@/assets/cmf combo/cmf_combo_watch_1772772670133.png"
 import cmfComboEarbuds from "@/assets/cmf combo/cmf_combo_earbuds_1772772701038.png"
 import cmfComboCharger from "@/assets/cmf combo/cmf_combo_charger_1772772718103.png"
 import cmfComboLifestyle from "@/assets/cmf combo/cmf_combo_lifestyle_1772772731420.png"
-import img_id2_new from "@/assets/generated/gen_cmf_neckband_1772726067592.png"
+
 import img_id3_new from "@/assets/generated/gen_fossil_watch_1772726086773.png"
 import img_id4_new from "@/assets/generated/gen_iwatch_1772726103415.png"
 
@@ -93,7 +106,7 @@ export const products: Product[] = [
     category: "audio",
     price: 599,
     description: "Wireless CMF neckband with strong bass and long battery backup.",
-    image: [img_id2_new],
+    image: [img_id2_new,neckband1,neckband2,neckband3,neckband4],
     stock: 40,
     rating: 4.2,
     featured: true
@@ -156,22 +169,22 @@ export const products: Product[] = [
     name: "Apple airpods pro gen 2",
     brand: "Apple",
     category: "audio",
-    price: 650,
+    price: 850,
     image: [img_id7],
     description: "Noise cancelling AirPods Pro Gen 2 with improved sound clarity.",
     stock: 50
   },
 
-  {
-    id: 8,
-    name: "Airpods pro gen 2",
-    brand: "Apple",
-    category: "audio",
-    price: 850,
-    image: [img_id8],
-    description: "Premium AirPods Pro Gen 2 wireless earbuds with ANC support.",
-    stock: 30
-  },
+  // {
+  //   id: 8,
+  //   name: "Airpods pro gen 2",
+  //   brand: "Apple",
+  //   category: "audio",
+  //   price: 850,
+  //   image: [img_id8],
+  //   description: "Premium AirPods Pro Gen 2 wireless earbuds with ANC support.",
+  //   stock: 30
+  // },
 
   // 🔶 CMF Products
 
