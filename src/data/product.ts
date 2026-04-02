@@ -12,11 +12,16 @@ import cmfbuds7 from "@/assets/cmf buds 2/cmf buds 2 image7.webp"
 import cmfbuds8 from "@/assets/cmf buds 2/cmf buds 2 image8.webp"
 
 // Samsung Buds 3 Pro images
-import buds3pro1 from "@/assets/samsung buds 3 pro/buds3pro_1_1772704876531.png"
-import buds3pro2 from "@/assets/samsung buds 3 pro/buds3pro_2_1772704919026.png"
-import buds3pro3 from "@/assets/samsung buds 3 pro/buds3pro_3_1772704933789.png"
-import buds3pro4 from "@/assets/samsung buds 3 pro/buds3pro_4_1772704976549.png"
-import buds3pro5 from "@/assets/samsung buds 3 pro/buds3pro_5_1772704992368.png"
+// import buds3pro1 from "@/assets/samsung buds 3 pro/buds3pro_1_1772704876531.png"
+// import buds3pro2 from "@/assets/samsung buds 3 pro/buds3pro_2_1772704919026.png"
+// import buds3pro3 from "@/assets/samsung buds 3 pro/buds3pro_3_1772704933789.png"
+// import buds3pro4 from "@/assets/samsung buds 3 pro/buds3pro_4_1772704976549.png"
+// import buds3pro5 from "@/assets/samsung buds 3 pro/buds3pro_5_1772704992368.png"
+import buds3image1 from "@/assets/samsung buds 3 pro/samsungbud3proimage1.jpg"
+import buds3image2 from "@/assets/samsung buds 3 pro/samsungbud3proimage2.jpg"
+import buds3image3 from "@/assets/samsung buds 3 pro/samsungbud3proimage3.jpg"
+import buds3image4 from "@/assets/samsung buds 3 pro/samsungbud3proimage4.jpg"
+
 
 // samsung active 2 watches
 // import img_id5_new from "@/assets/generated/gen_samsung_watch_1772726121883.png"
@@ -40,21 +45,37 @@ import neckband4 from "@/assets/cmf neckband/neckband4.webp"
 
 import img_id9 from "@/assets/generated/cmf_buds_neckband_1772705195429.png"
 
+// oneplus buds 3 pro 
+// import img_id17 from "@/assets/generated/oneplus_buds3_pro_1772705309268.png"
+import buds3proimage1 from "@/assets/one plus buds 3 pro/oneplusimage1.png"
+import buds3proimage2 from "@/assets/one plus buds 3 pro/oneplusimage2.png"
+import buds3proimage3 from "@/assets/one plus buds 3 pro/oneplusimage3.png"
+import buds3proimage4 from "@/assets/one plus buds 3 pro/oneplusimage4.png"
+import buds3proimage5 from "@/assets/one plus buds 3 pro/oneplusimage5.png"
+import buds3proimage6 from "@/assets/one plus buds 3 pro/oneplusimage6.png"
+import buds3proimage7 from "@/assets/one plus buds 3 pro/oneplusimage7.png"
 
 
 
+
+// apple airpods pro gen 2
+import img_id7 from "@/assets/generated/airpods_pro_gen2_1772705148195.png"
+import gen2image1 from "@/assets/air pods gen 2/airpodsgen2image1.jpg"
+import gen2image2 from "@/assets/air pods gen 2/airpodsgen2image2.jpg"
+import gen2image3 from "@/assets/air pods gen 2/airpodsgen2image3.jpg"
+import gen2image4 from "@/assets/air pods gen 2/airpodsgen2image4.jpg"
 
 // Generated missing images
 import img_id6 from "@/assets/generated/airpods_magsafe_combo_1772705132517.png"
-import img_id7 from "@/assets/generated/airpods_pro_gen2_1772705148195.png"
-import img_id8 from "@/assets/generated/airpods_pro_gen2_alt_1772705178160.png"
+
+// import img_id8 from "@/assets/generated/airpods_pro_gen2_alt_1772705178160.png"
 
 import img_id10 from "@/assets/generated/cmf_buds_pro_button_1772705220670.png"
 import img_id11 from "@/assets/generated/cmf_neckband_roller_1772705237229.png"
 import img_id12 from "@/assets/generated/cmf_buds_1772705253893.png"
 import img_id14 from "@/assets/generated/samsung_oneplus_combo_1772705268220.png"
 import img_id16 from "@/assets/generated/samsung_buds2_pro_1772705292565.png"
-import img_id17 from "@/assets/generated/oneplus_buds3_pro_1772705309268.png"
+
 
 
 import cmfComboHero from "@/assets/cmf combo/cmf_combo_hero_1772772651993.png"
@@ -170,7 +191,7 @@ export const products: Product[] = [
     brand: "Apple",
     category: "audio",
     price: 850,
-    image: [img_id7],
+    image: [img_id7,gen2image1,gen2image2,gen2image3,gen2image4],
     description: "Noise cancelling AirPods Pro Gen 2 with improved sound clarity.",
     stock: 50
   },
@@ -262,7 +283,8 @@ export const products: Product[] = [
     brand: "Samsung",
     category: "audio",
     price: 850,
-    image: [buds3pro1, buds3pro2, buds3pro3, buds3pro4, buds3pro5],
+    // buds3pro1, buds3pro2, buds3pro3, buds3pro4, buds3pro5,
+    image: [buds3image1,buds3image2,buds3image3,buds3image4],
     description: "Samsung Buds 3 Pro with premium sound and comfortable fit.",
     stock: 40
   },
@@ -286,7 +308,8 @@ export const products: Product[] = [
     brand: "OnePlus",
     category: "audio",
     price: 599,
-    image: [img_id17],
+    // img_id17
+    image: [buds3proimage1,buds3proimage2,buds3proimage3,buds3proimage4,buds3proimage5,buds3proimage6,buds3proimage7],
     description: "OnePlus Buds 3 Pro with clear audio and fast pairing.",
     stock: 45
   },
