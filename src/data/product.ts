@@ -18,6 +18,12 @@ import buds3pro3 from "@/assets/samsung buds 3 pro/buds3pro_3_1772704933789.png"
 import buds3pro4 from "@/assets/samsung buds 3 pro/buds3pro_4_1772704976549.png"
 import buds3pro5 from "@/assets/samsung buds 3 pro/buds3pro_5_1772704992368.png"
 
+// samsung active 2 watches
+// import img_id5_new from "@/assets/generated/gen_samsung_watch_1772726121883.png"
+import active2image1 from "@/assets/samsung galaxy active 2/active2image1.jpeg"
+import active2image2 from "@/assets/samsung galaxy active 2/active2image2.jpeg"
+import active2image3 from "@/assets/samsung galaxy active 2/active3image3.jpeg"
+import active2image4 from "@/assets/samsung galaxy active 2/active4iamge4.jpeg"
 
 
 
@@ -46,7 +52,7 @@ import cmfComboLifestyle from "@/assets/cmf combo/cmf_combo_lifestyle_1772772731
 import img_id2_new from "@/assets/generated/gen_cmf_neckband_1772726067592.png"
 import img_id3_new from "@/assets/generated/gen_fossil_watch_1772726086773.png"
 import img_id4_new from "@/assets/generated/gen_iwatch_1772726103415.png"
-import img_id5_new from "@/assets/generated/gen_samsung_watch_1772726121883.png"
+
 import img_id18_new from "@/assets/generated/gen_oneplus_combo_1772726137766.png"
 import img_id19_new from "@/assets/generated/gen_magsafe_powerbank_1772726156321.png"
 
@@ -126,7 +132,7 @@ export const products: Product[] = [
     category: "smartwatch",
     price: 999,
     description: "Samsung Active 2 style smartwatch with fitness tracking and AMOLED display.",
-    image: [img_id5_new],
+    image: [active2image2,active2image1,active2image3,active2image4],
     stock: 30,
     rating: 4.4,
     featured: true
