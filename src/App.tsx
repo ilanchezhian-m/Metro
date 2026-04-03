@@ -21,9 +21,9 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="*" element={<NotFound />} />
-           <Analytics />  {/* ✅ add this */}
         </Route>
       </Routes>
+       <Analytics />  {/* ✅ add this */}
     </BrowserRouter>
   )
 }
