@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Analytics } from "@vercel/analytics/react"
 import MainLayout from "./components/layout/MainLayout"
 import Home from "./pages/Home"
 import About from "./pages/About"
@@ -20,6 +21,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="*" element={<NotFound />} />
+           <Analytics />  {/* ✅ add this */}
         </Route>
       </Routes>
     </BrowserRouter>
