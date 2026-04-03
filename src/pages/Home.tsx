@@ -23,7 +23,7 @@ const categoryLabel: Record<string, string> = {
 
 const Home = () => {
 
-    const videoRef = useRef(null);
+   
   const { addToCart } = useCart()
   const location = useLocation()
 
@@ -154,11 +154,11 @@ const Home = () => {
         </div>
       </div>
       {/* adding a video format here  */}
-       <div className="flex justify-center px-4 py-8">
-  <video className="w-full max-w-2xl rounded-2xl" controls>
-    <source src={promovideo} type="video/mp4" />
-  </video>
-</div>
+        <div className="flex justify-center px-4 py-8">
+        <video className="w-full max-w-2xl rounded-2xl" controls>
+          <source src={promovideo} type="video/mp4" />
+        </video>
+      </div>
 
       {/* Categories Bar - Desktop */}
       <section className="border-y border-gray-100 bg-white sticky top-[81px] z-40 hidden md:block">
