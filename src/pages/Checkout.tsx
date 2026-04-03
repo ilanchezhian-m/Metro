@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { ChevronRight, ShieldCheck, Truck, ArrowRight, ShoppingBag } from "lucide-react"
 import { motion } from "framer-motion"
+import phonepe from "../assets/payment scanner/Phonepe.jpeg"
 
 const Checkout = () => {
     const { cart } = useCart()
@@ -217,6 +218,8 @@ const Checkout = () => {
                                 Place Order Let's Go
                                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform" />
                             </Button>
+                                        <p className="text-center text-3xl font-bold"> UPI PAYMENT </p>
+                            <img src={phonepe} alt="scanner image for phonepay" />
 
                             {/* Trust Badges */}
                             <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">

@@ -5,7 +5,10 @@ import { Button } from "@/components/ui/button"
 import { Link, useLocation } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { ShoppingCart, Headphones, Watch, Smartphone, Zap, Package, Check } from "lucide-react"
+import { useRef } from "react"
 
+
+import promovideo from "../assets/promovideo/promovideo.mp4"
 import heroAudioImage from "@/assets/hero-audio.png"
 
 const categoryLabel: Record<string, string> = {
@@ -17,7 +20,10 @@ const categoryLabel: Record<string, string> = {
   accessory: "Accessories",
 }
 
+
 const Home = () => {
+
+    const videoRef = useRef(null);
   const { addToCart } = useCart()
   const location = useLocation()
 
@@ -66,7 +72,7 @@ const Home = () => {
     <div className="min-h-screen bg-white text-gray-900 selection:bg-[#ff4500] selection:text-white pb-20">
 
       {/* Hero Section — hidden on mobile */}
-      <section className="hidden sm:block px-4 sm:px-6 lg:px-8 py-8 lg:py-12 max-w-[1400px] mx-auto">
+      <section className=" sm:block px-4 sm:px-6 lg:px-8 py-8 lg:py-12 max-w-[1400px] mx-auto">
         <div className="bg-[#f5f5f7] rounded-3xl overflow-hidden relative min-h-[500px] lg:min-h-[600px] flex items-center">
           <div className="grid lg:grid-cols-2 gap-8 w-full p-8 md:p-12 lg:p-20 z-10">
             <motion.div
@@ -84,7 +90,7 @@ const Home = () => {
               <p className="text-lg text-gray-500 max-w-md leading-relaxed">
                 Discover trending gadgets, high-tech drones, audio devices, and smart accessories at unbeatable deals.
               </p>
-              <div className="pt-4 flex flex-wrap gap-3">
+              <div className="hidden pt-4 flex flex-wrap gap-3">
                 {[
                   { key: "audio", label: "Smart Audio", icon: <Headphones className="w-4 h-4" /> },
                   { key: "watch", label: "Watches", icon: <Watch className="w-4 h-4" /> },
@@ -112,7 +118,7 @@ const Home = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative hidden lg:flex items-center justify-center"
+              className="relative  lg:flex items-center justify-center"
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-gray-200/50 to-transparent rounded-full filter blur-3xl opacity-50"></div>
               <img
@@ -147,6 +153,12 @@ const Home = () => {
           ))}
         </div>
       </div>
+      {/* adding a video format here  */}
+       <div className="flex justify-center px-4 py-8">
+  <video className="w-full max-w-2xl rounded-2xl" controls>
+    <source src={promovideo} type="video/mp4" />
+  </video>
+</div>
 
       {/* Categories Bar - Desktop */}
       <section className="border-y border-gray-100 bg-white sticky top-[81px] z-40 hidden md:block">

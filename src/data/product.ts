@@ -55,7 +55,15 @@ import buds3proimage5 from "@/assets/one plus buds 3 pro/oneplusimage5.png"
 import buds3proimage6 from "@/assets/one plus buds 3 pro/oneplusimage6.png"
 import buds3proimage7 from "@/assets/one plus buds 3 pro/oneplusimage7.png"
 
+// oneplus combo buds 3 pro + anc neckband 
+import onepluscombo1 from "@/assets/onepluscombo/onepluscomboimage1.jpeg"
+import onepluscombo2 from "@/assets/onepluscombo/onepluscomboimage2.jpeg"
+import onepluscombo3 from "@/assets/onepluscombo/onepluscomboimage3.jpeg"
+import onepluscombo4 from "@/assets/onepluscombo/onepluscomboimage4.jpeg"
 
+// oneplus buds 3r
+
+import oneplusbuds3rimage1 from "../assets/oneplusbuds3r/oneplusbuds3rimage1.jpeg"
 
 
 // apple airpods pro gen 2
@@ -65,11 +73,19 @@ import gen2image2 from "@/assets/air pods gen 2/airpodsgen2image2.jpg"
 import gen2image3 from "@/assets/air pods gen 2/airpodsgen2image3.jpg"
 import gen2image4 from "@/assets/air pods gen 2/airpodsgen2image4.jpg"
 
-// Generated missing images
+// magsafeandairpodsgen2comboimage1
 import img_id6 from "@/assets/generated/airpods_magsafe_combo_1772705132517.png"
+import magsafecomboimage1 from "../assets/applemagsafeairpodscombo/magsafeandairpodsgen2comboimage1.jpeg"
+
+
+
+
+
+// Generated missing images
+
 
 // import img_id8 from "@/assets/generated/airpods_pro_gen2_alt_1772705178160.png"
-
+import img_id18_new from "@/assets/generated/gen_oneplus_combo_1772726137766.png"
 import img_id10 from "@/assets/generated/cmf_buds_pro_button_1772705220670.png"
 import img_id11 from "@/assets/generated/cmf_neckband_roller_1772705237229.png"
 import img_id12 from "@/assets/generated/cmf_buds_1772705253893.png"
@@ -87,7 +103,7 @@ import cmfComboLifestyle from "@/assets/cmf combo/cmf_combo_lifestyle_1772772731
 import img_id3_new from "@/assets/generated/gen_fossil_watch_1772726086773.png"
 import img_id4_new from "@/assets/generated/gen_iwatch_1772726103415.png"
 
-import img_id18_new from "@/assets/generated/gen_oneplus_combo_1772726137766.png"
+
 import img_id19_new from "@/assets/generated/gen_magsafe_powerbank_1772726156321.png"
 
 export type Product = {
@@ -180,7 +196,7 @@ export const products: Product[] = [
     brand: "Apple",
     category: "audio",
     price: 999,
-    image: [img_id6],
+    image: [magsafecomboimage1,img_id6],
     description: "Apple style AirPods bundled with MagSafe wireless charger combo.",
     stock: 35
   },
@@ -316,19 +332,28 @@ export const products: Product[] = [
 
   {
     id: 18,
-    name: "Oneplus and neckband combo",
+    name: "Oneplus Nord buds 3 pro  and Z2 ANC combo",
     brand: "OnePlus",
     category: "combo",
     price: 599,
     description: "OnePlus earbuds and neckband combo pack.",
-    image: [img_id18_new],
+    image: [onepluscombo1,onepluscombo2,onepluscombo3,onepluscombo4],
     stock: 25
   },
-
+  {
+    id: 19,
+    name: "Oneplus Nord buds 3r",
+    brand: "OnePlus",
+    category: "combo",
+    price: 599,
+    description: "OnePlus earbuds and neckband combo pack.",
+    image: [oneplusbuds3rimage1,img_id18_new],
+    stock: 25
+  },
   // 🔋 Accessories
 
   {
-    id: 19,
+    id: 20,
     name: "Magsafe powerbank",
     brand: "Apple",
     category: "accessory",
