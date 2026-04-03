@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Link, useLocation } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { ShoppingCart, Headphones, Watch, Smartphone, Zap, Package, Check } from "lucide-react"
-import { useRef } from "react"
+
 
 
 import promovideo from "../assets/promovideo/promovideo.mp4"
